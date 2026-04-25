@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="oroborosGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="50%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#22c55e"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <radialGradient id="coreGrad">
+      <stop offset="0%" style="stop-color:#fff;stop-opacity:0.95"/>
+      <stop offset="60%" style="stop-color:#8b5cf6;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#0a0a0f;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="256" cy="256" r="256" fill="url(#bgGrad)"/>
+
+  <!-- Outer Oroboros ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="url(#oroborosGrad)" stroke-width="6" opacity="0.9"/>
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#oroborosGrad)" stroke-width="2" opacity="0.5"/>
+
+  <!-- 48-cube facets (12 around the core) -->
+  <g stroke="url(#oroborosGrad)" stroke-width="1.5" fill="none" opacity="0.7">
+    <polygon points="256,90 296,120 296,160 256,190 216,160 216,120"/>
+    <polygon points="256,322 296,352 296,392 256,422 216,392 216,352"/>
+    <polygon points="90,256 120,216 160,216 190,256 160,296 120,296"/>
+    <polygon points="322,256 352,216 392,216 422,256 392,296 352,296"/>
+  </g>
+
+  <!-- Inner cube (3D wireframe) -->
+  <g stroke="url(#oroborosGrad)" stroke-width="2.5" fill="none">
+    <rect x="200" y="200" width="112" height="112"/>
+    <rect x="220" y="180" width="112" height="112"/>
+    <line x1="200" y1="200" x2="220" y2="180"/>
+    <line x1="312" y1="200" x2="332" y2="180"/>
+    <line x1="200" y1="312" x2="220" y2="292"/>
+    <line x1="312" y1="312" x2="332" y2="292"/>
+  </g>
+
+  <!-- Core glow -->
+  <circle cx="256" cy="256" r="80" fill="url(#coreGrad)"/>
+  <circle cx="256" cy="256" r="14" fill="#fff" opacity="0.95"/>
+
+  <!-- Architect mark -->
+  <text x="256" y="490" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="28" fill="url(#oroborosGrad)" letter-spacing="6">OROBOROS</text>
+</svg>
