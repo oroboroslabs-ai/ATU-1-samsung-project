@@ -1,4 +1,4 @@
-// OROBOROS LABS — ATU-1 Presentation Site
+// ATU-1 — Samsung Official Style
 // Main JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,13 +8,29 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+        const headerOffset = 64;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
         });
       }
     });
   });
+
+  // Header scroll effect
+  const header = document.querySelector('.site-header');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  }
 
   // Intersection Observer for fade-in animations
   const observerOptions = {
@@ -31,77 +47,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  // Observe all cards and metrics
-  document.querySelectorAll('.card, .metric, .app').forEach(el => {
+  // Observe feature cards, spec cards, and application cards
+  document.querySelectorAll('.feature-card, .spec-card, .application-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
 
-  // Phone mockup interaction
-  const phone = document.querySelector('.phone');
-  if (phone) {
-    phone.addEventListener('mouseenter', () => {
-      phone.style.transform = 'scale(1.02) rotateY(-5deg)';
-      phone.style.transition = 'transform 0.3s ease';
+  // Phone hover effect
+  const heroPhone = document.querySelector('.hero-phone');
+  if (heroPhone) {
+    heroPhone.addEventListener('mouseenter', () => {
+      heroPhone.style.transform = 'scale(1.02) translateY(-10px)';
+      heroPhone.style.transition = 'transform 0.3s ease';
     });
 
-    phone.addEventListener('mouseleave', () => {
-      phone.style.transform = 'scale(1) rotateY(0deg)';
+    heroPhone.addEventListener('mouseleave', () => {
+      heroPhone.style.transform = 'scale(1) translateY(0)';
     });
   }
 
-  // Dynamic KPI counter animation
-  const animateCounter = (element, target, duration = 2000) => {
-    let start = 0;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        element.textContent = target.toLocaleString();
-        clearInterval(timer);
-      } else {
-        element.textContent = Math.floor(start).toLocaleString();
-      }
-    }, 16);
-  };
-
-  // Animate KPI numbers when visible
-  const kpiObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const numEl = entry.target.querySelector('.kpi-num');
-        if (numEl) {
-          const text = numEl.textContent;
-          if (text.includes(',')) {
-            const num = parseInt(text.replace(/,/g, ''));
-            if (!isNaN(num)) {
-              animateCounter(numEl, num);
-            }
-          }
-        }
-        kpiObserver.unobserve(entry.target);
-      }
+  // Showcase phone hover effect
+  const showcasePhone = document.querySelector('.showcase-phone');
+  if (showcasePhone) {
+    showcasePhone.addEventListener('mouseenter', () => {
+      showcasePhone.style.transform = 'scale(1.02) translateY(-10px)';
+      showcasePhone.style.transition = 'transform 0.3s ease';
     });
-  }, { threshold: 0.5 });
 
-  document.querySelectorAll('.kpi').forEach(kpi => {
-    kpiObserver.observe(kpi);
-  });
-
-  // Add subtle parallax effect to hero
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero && scrolled < window.innerHeight) {
-      hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-    }
-  });
+    showcasePhone.addEventListener('mouseleave', () => {
+      showcasePhone.style.transform = 'scale(1) translateY(0)';
+    });
+  }
 
   // Console greeting
-  console.log('%cOROBOROS LABS', 'font-weight: 800; font-size: 24px; color: #6366f1;');
-  console.log('%cATU-1 — AI Tactical Unit', 'font-size: 14px; color: #8b5cf6;');
-  console.log('%c48³ Source Cube Architecture', 'font-size: 12px; color: #22c55e;');
+  console.log('%cATU-1', 'font-weight: 800; font-size: 24px; color: #1428a0;');
+  console.log('%cAI Tactical Unit — Samsung × Oroboros Labs', 'font-size: 14px; color: #424242;');
+  console.log('%cUniversal intelligence for every home', 'font-size: 12px; color: #757575;');
   console.log('\n🔗 https://oroboros.ai/atu-1');
 });

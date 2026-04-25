@@ -2,199 +2,488 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0a0a0f">
-    <title>ATU-1 — AI Tactical Unit | Oroboros Labs</title>
-    <meta name="description" content="The AI Tactical Unit (ATU-1): server-grade intelligence in a 4cm puck, powered by recycled Snapdragon and the Oroboros 48³ Source Cube architecture.">
-    <meta name="keywords" content="ATU, AI Tactical Unit, Oroboros Labs, Samsung, Snapdragon, 48 cube, edge AI, smart home, on-device AI">
-    <meta property="og:title" content="ATU-1 — Universal Intelligence for Every Home">
-    <meta property="og:description" content="800MB compressed Source Cube AI on a $25 puck. Controls 50,000+ devices. Local-first. Oroboros Labs.">
-    <meta property="og:type" content="website">
-
-    <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATU-1 | AI Tactical Unit — Samsung × Oroboros Labs</title>
+    <meta name="description" content="Universal intelligence for every home. Server-grade AI in a 4cm puck.">
+    <link rel="icon" type="image/svg+xml" href="assets/img/oroboros-logo.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<!-- Status bar / header -->
-<header class="topbar">
-    <div class="brand">
-        <img src="assets/img/logo.svg" alt="Oroboros" class="brand-logo">
-        <span class="brand-name">OROBOROS LABS</span>
+<!-- Header -->
+<header class="site-header">
+    <div class="header-container">
+        <div class="header-left">
+            <a href="#" class="logo-link">
+                <img src="assets/img/oroboros-logo.svg" alt="Oroboros Labs" class="logo">
+            </a>
+            <span class="logo-divider">|</span>
+            <span class="logo-text">OROBOROS LABS</span>
+        </div>
+        <nav class="header-nav">
+            <a href="#overview" class="nav-link">Overview</a>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#specs" class="nav-link">Specs</a>
+            <a href="#applications" class="nav-link">Applications</a>
+            <a href="#partnership" class="nav-link">Partnership</a>
+            <a href="samsung-spen.html" class="nav-link" style="color: #1428a0;">S Pen Showcase</a>
+        </nav>
+        <div class="header-right">
+            <a href="#contact" class="btn-primary">Contact Us</a>
+        </div>
     </div>
-    <nav class="topnav">
-        <a href="#device">Device</a>
-        <a href="#architecture">48³</a>
-        <a href="#applications">Apps</a>
-        <a href="#partner">Partner</a>
-    </nav>
 </header>
 
-<!-- Hero with phone mockup -->
-<section class="hero">
-    <div class="hero-text">
-        <div class="eyebrow">AI TACTICAL UNIT — ATU-1</div>
-        <h1>Universal intelligence,<br><span class="grad">in your hand.</span></h1>
-        <p class="lede">Server-grade reasoning in a <strong>4&nbsp;cm × 4&nbsp;cm × 1.5&nbsp;cm</strong> puck. Built on recycled Snapdragon 8 Gen 2/3 and the Oroboros 48³ Source Cube — compressed to <strong>800&nbsp;MB</strong>, running fully local, controlling 50,000+ devices.</p>
-        <div class="cta-row">
-            <a href="#partner" class="btn btn-primary">Partner With Us</a>
-            <a href="docs/ATU_WHITEPAPER.txt" class="btn btn-ghost">Read Whitepaper</a>
+<!-- Hero Section -->
+<section class="hero" id="overview">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-text">NEW</span>
+                <span class="badge-year">2026</span>
+            </div>
+            <h1 class="hero-title">ATU-1</h1>
+            <h2 class="hero-subtitle">AI Tactical Unit</h2>
+            <p class="hero-description">Universal intelligence for every home. Server-grade reasoning in a 4cm puck.</p>
+            <div class="hero-cta">
+                <a href="#specs" class="btn-primary btn-large">View Specifications</a>
+                <a href="#whitepaper" class="btn-secondary btn-large">Read Whitepaper</a>
+            </div>
+            <div class="hero-metrics">
+                <div class="metric-item">
+                    <div class="metric-value">$15-25</div>
+                    <div class="metric-label">Manufacturing Cost</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">&lt;100ms</div>
+                    <div class="metric-label">Response Time</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">50,000+</div>
+                    <div class="metric-label">Devices Indexed</div>
+                </div>
+            </div>
         </div>
-        <div class="kpi-row">
-            <div class="kpi"><div class="kpi-num">$15-25</div><div class="kpi-lbl">Manufacturing cost</div></div>
-            <div class="kpi"><div class="kpi-num">50,000+</div><div class="kpi-lbl">Devices indexed</div></div>
-            <div class="kpi"><div class="kpi-num">&lt;100ms</div><div class="kpi-lbl">Local inference</div></div>
-            <div class="kpi"><div class="kpi-num">5W</div><div class="kpi-lbl">Typical power</div></div>
+        <div class="hero-image">
+            <img src="assets/img/phone-hero.png" alt="ATU-1 Device" class="hero-phone">
         </div>
     </div>
+</section>
 
-    <!-- Phone mockup -->
-    <div class="phone-wrap">
-        <div class="phone">
-            <div class="notch"></div>
-            <div class="phone-screen">
-                <div class="phone-status">
-                    <span>9:41</span>
-                    <span class="signal">●●●● Oroboros</span>
+<!-- Features Section -->
+<section class="features" id="features">
+    <div class="section-container">
+        <div class="section-header">
+            <h2 class="section-title">Intelligence Everywhere</h2>
+            <p class="section-subtitle">Powered by revolutionary 48³ compressed AI architecture</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <path d="M24 4L4 14V34L24 44L44 34V14L24 4Z" stroke="#1428a0" stroke-width="2" fill="none"/>
+                        <path d="M24 4V24M24 24L44 14M24 24L4 14M24 24V44" stroke="#1428a0" stroke-width="2"/>
+                    </svg>
                 </div>
-                <div class="phone-app">
-                    <div class="puck">
-                        <img src="assets/img/logo.svg" alt="ATU" class="puck-logo">
-                        <div class="puck-ring"></div>
+                <h3 class="feature-title">48³ Architecture</h3>
+                <p class="feature-description">Compressed from 110,592 surface states to 13,824 mobile states with 94-96% capability retention.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="18" stroke="#1428a0" stroke-width="2"/>
+                        <path d="M24 12V24L32 28" stroke="#1428a0" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Lightning Fast</h3>
+                <p class="feature-description">&lt;100ms local inference with INT4 quantization. No cloud dependency.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <rect x="8" y="8" width="32" height="32" rx="4" stroke="#1428a0" stroke-width="2"/>
+                        <path d="M16 20H32M16 28H28" stroke="#1428a0" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Universal Control</h3>
+                <p class="feature-description">50,000+ devices indexed. WiFi 7, BT 6.0, UWB, NFC, IR, Zigbee, Z-Wave, Matter.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <path d="M24 8C15.163 8 8 15.163 8 24C8 32.837 15.163 40 24 40C32.837 40 40 32.837 40 24" stroke="#1428a0" stroke-width="2"/>
+                        <path d="M24 16V24L30 28" stroke="#1428a0" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Always On</h3>
+                <p class="feature-description">5W typical power, 15W peak. 24/7 local AI monitoring and response.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Showcase -->
+<section class="showcase">
+    <div class="showcase-container">
+        <div class="showcase-content">
+            <h2 class="showcase-title">See the Difference</h2>
+            <p class="showcase-description">200MP Samsung ISOCELL HP2 with IR + night vision capabilities</p>
+            <div class="showcase-features">
+                <div class="showcase-feature">
+                    <span class="showcase-feature-value">200MP</span>
+                    <span class="showcase-feature-label">Primary Sensor</span>
+                </div>
+                <div class="showcase-feature">
+                    <span class="showcase-feature-value">1/1.3"</span>
+                    <span class="showcase-feature-label">Sensor Size</span>
+                </div>
+                <div class="showcase-feature">
+                    <span class="showcase-feature-value">15m</span>
+                    <span class="showcase-feature-label">IR Range</span>
+                </div>
+            </div>
+        </div>
+        <div class="showcase-image">
+            <img src="assets/img/samsung-spen-sunset.png" alt="Samsung S Pen with Sunset" class="showcase-phone">
+        </div>
+    </div>
+</section>
+
+<!-- Specifications Section -->
+<section class="specs" id="specs">
+    <div class="section-container">
+        <div class="section-header">
+            <h2 class="section-title">Technical Specifications</h2>
+            <p class="section-subtitle">Everything you need to know about ATU-1</p>
+        </div>
+        <div class="specs-grid">
+            <div class="spec-card">
+                <div class="spec-card-header">
+                    <h3 class="spec-card-title">Hardware</h3>
+                </div>
+                <div class="spec-card-body">
+                    <div class="spec-row">
+                        <span class="spec-label">Processor</span>
+                        <span class="spec-value">Snapdragon 8 Gen 2/3</span>
                     </div>
-                    <h3 class="puck-name">ATU-1</h3>
-                    <div class="puck-status"><span class="dot online"></span> Online · 12 devices</div>
-                    <div class="puck-tiles">
-                        <div class="tile"><div class="tile-icon">🔒</div><div>Doors</div><small>locked</small></div>
-                        <div class="tile"><div class="tile-icon">💡</div><div>Lights</div><small>auto</small></div>
-                        <div class="tile"><div class="tile-icon">🌡️</div><div>Climate</div><small>72°F</small></div>
-                        <div class="tile"><div class="tile-icon">📷</div><div>Cameras</div><small>4 live</small></div>
-                        <div class="tile"><div class="tile-icon">🚗</div><div>Vehicle</div><small>parked</small></div>
-                        <div class="tile"><div class="tile-icon">⚡</div><div>Energy</div><small>2.1 kW</small></div>
+                    <div class="spec-row">
+                        <span class="spec-label">CPU</span>
+                        <span class="spec-value">8-core (1× X3 + 4× A715 + 3× A510)</span>
                     </div>
-                    <div class="puck-bar">
-                        <span class="puck-bar-label">Hey Kaiju...</span>
-                        <span class="puck-bar-mic">🎤</span>
+                    <div class="spec-row">
+                        <span class="spec-label">GPU</span>
+                        <span class="spec-value">Adreno 740</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">NPU</span>
+                        <span class="spec-value">Hexagon Processor</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">RAM</span>
+                        <span class="spec-value">8GB LPDDR5</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Storage</span>
+                        <span class="spec-value">128GB UFS</span>
                     </div>
                 </div>
             </div>
-            <div class="home-indicator"></div>
+            <div class="spec-card">
+                <div class="spec-card-header">
+                    <h3 class="spec-card-title">AI Model</h3>
+                </div>
+                <div class="spec-card-body">
+                    <div class="spec-row">
+                        <span class="spec-label">Architecture</span>
+                        <span class="spec-value">48³ Source Cube</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Parameters</span>
+                        <span class="spec-value">800M (INT4)</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Context Window</span>
+                        <span class="spec-value">32K tokens</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Model Size</span>
+                        <span class="spec-value">800MB-1.2GB</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Runtime Memory</span>
+                        <span class="spec-value">2-4GB</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Inference Speed</span>
+                        <span class="spec-value">50-100ms</span>
+                    </div>
+                </div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-card-header">
+                    <h3 class="spec-card-title">Connectivity</h3>
+                </div>
+                <div class="spec-card-body">
+                    <div class="spec-row">
+                        <span class="spec-label">WiFi</span>
+                        <span class="spec-value">802.11be (WiFi 7)</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Bluetooth</span>
+                        <span class="spec-value">6.0 with LE Audio</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">UWB</span>
+                        <span class="spec-value">IEEE 802.15.4z</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Additional</span>
+                        <span class="spec-value">NFC, IR, Zigbee, Z-Wave, Matter</span>
+                    </div>
+                </div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-card-header">
+                    <h3 class="spec-card-title">Power</h3>
+                </div>
+                <div class="spec-card-body">
+                    <div class="spec-row">
+                        <span class="spec-label">Typical</span>
+                        <span class="spec-value">5W</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Peak</span>
+                        <span class="spec-value">15W</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Dimensions</span>
+                        <span class="spec-value">4cm × 4cm × 1.5cm</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Weight</span>
+                        <span class="spec-value">&lt;50g</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="phone-shadow"></div>
     </div>
 </section>
 
-<!-- Device -->
-<section id="device" class="section">
-    <h2 class="section-title">The Device</h2>
-    <div class="grid-3">
-        <div class="card">
-            <div class="card-icon">⚙️</div>
-            <h3>Snapdragon 8 Gen 2/3</h3>
-            <p>Recycled, certified, repurposed. CPU + Adreno 740 GPU + Hexagon NPU. Up to 40 TOPS at INT4.</p>
+<!-- Applications Section -->
+<section class="applications" id="applications">
+    <div class="section-container">
+        <div class="section-header">
+            <h2 class="section-title">Applications</h2>
+            <p class="section-subtitle">Intelligence for every aspect of life</p>
         </div>
-        <div class="card">
-            <div class="card-icon">📷</div>
-            <h3>200MP IR + Night Vision</h3>
-            <p>Samsung ISOCELL HP2 with 8× 850nm IR LEDs. 15m range. Heart rate, gesture, and security in one sensor.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon">📡</div>
-            <h3>Universal Radio</h3>
-            <p>WiFi 7 · BT 6.0 · UWB · NFC · IR · Zigbee · Z-Wave · Matter. One puck speaks every protocol.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon">🧠</div>
-            <h3>Kaiju-ATU Model</h3>
-            <p>800MB INT4. 32K context. 50–100ms responses. Distilled from the full 48³ Source Cube.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon">🛡️</div>
-            <h3>NOIR Security Nano</h3>
-            <p>AINZ · SHIELD · SIGNAL · NET · SYNTH compressed to 150MB. Local AES-256-GCM, real-time threat detection.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon">🔄</div>
-            <h3>Self-Maintaining</h3>
-            <p>OTA model updates, hourly diagnostics, autonomous repair across weights, memory, network, and sensors.</p>
+        <div class="applications-grid">
+            <div class="application-card">
+                <div class="application-image">
+                    <img src="assets/img/phone-display.png" alt="Smart Home">
+                </div>
+                <div class="application-content">
+                    <h3 class="application-title">Smart Home</h3>
+                    <p class="application-description">Unified security dashboard, energy optimization, routine automation for all connected devices.</p>
+                </div>
+            </div>
+            <div class="application-card">
+                <div class="application-image">
+                    <img src="assets/img/phone-note.png" alt="Healthcare">
+                </div>
+                <div class="application-content">
+                    <h3 class="application-title">Healthcare</h3>
+                    <p class="application-description">Fall detection, vital monitoring, elder care, mental health support, emergency response.</p>
+                </div>
+            </div>
+            <div class="application-card">
+                <div class="application-image">
+                    <img src="assets/img/phone-hero.png" alt="Transportation">
+                </div>
+                <div class="application-content">
+                    <h3 class="application-title">Transportation</h3>
+                    <p class="application-description">Vehicle control, fleet management, public transit coordination, emergency vehicle priority.</p>
+                </div>
+            </div>
+            <div class="application-card">
+                <div class="application-image">
+                    <img src="assets/img/phone-lowlight.png" alt="Agriculture">
+                </div>
+                <div class="application-content">
+                    <h3 class="application-title">Agriculture</h3>
+                    <p class="application-description">Soil monitoring, irrigation management, livestock tracking, supply chain optimization.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Architecture -->
-<section id="architecture" class="section section-alt">
-    <h2 class="section-title">48³ Mobile Compression</h2>
-    <p class="section-lede">The full Oroboros Source Cube runs at 110,592 surface states on server hardware. The ATU compresses it to <strong>13,824 mobile-optimized states × 34³ effective</strong> — preserving 94–96% of reasoning capability at 1/100th the footprint.</p>
-    <div class="grid-4">
-        <div class="metric"><div class="metric-num">INT4</div><div class="metric-lbl">Quantization · 4:1</div></div>
-        <div class="metric"><div class="metric-num">√2</div><div class="metric-lbl">Geometric pruning</div></div>
-        <div class="metric"><div class="metric-num">85%</div><div class="metric-lbl">Distillation reduction</div></div>
-        <div class="metric"><div class="metric-num">4×</div><div class="metric-lbl">Dynamic module loading</div></div>
+<!-- Partnership Section -->
+<section class="partnership" id="partnership">
+    <div class="section-container">
+        <div class="section-header">
+            <h2 class="section-title">Partnership</h2>
+            <p class="section-subtitle">Samsung × Oroboros Labs</p>
+        </div>
+        <div class="partnership-content">
+            <div class="partnership-logos">
+                <div class="partner-logo">
+                    <img src="assets/img/oroboros-logo.svg" alt="Oroboros Labs">
+                    <span class="partner-name">Oroboros Labs</span>
+                </div>
+                <div class="partnership-plus">+</div>
+                <div class="partner-logo">
+                    <div class="samsung-logo">SAMSUNG</div>
+                    <span class="partner-name">Samsung</span>
+                </div>
+            </div>
+            <div class="partnership-details">
+                <div class="partnership-column">
+                    <h3 class="partnership-column-title">Samsung Provides</h3>
+                    <ul class="partnership-list">
+                        <li>Returned Snapdragon supply chain</li>
+                        <li>Manufacturing & logistics</li>
+                        <li>ISOCELL HP2 sensors</li>
+                        <li>Retail distribution channels</li>
+                    </ul>
+                </div>
+                <div class="partnership-column">
+                    <h3 class="partnership-column-title">Oroboros Provides</h3>
+                    <ul class="partnership-list">
+                        <li>48³ Source Cube architecture</li>
+                        <li>Kaiju-ATU compressed model</li>
+                        <li>NOIR Security Nano</li>
+                        <li>Universal protocol translation</li>
+                    </ul>
+                </div>
+                <div class="partnership-column">
+                    <h3 class="partnership-column-title">Terms</h3>
+                    <ul class="partnership-list">
+                        <li>Revenue share: 60/40</li>
+                        <li>Joint patent portfolio</li>
+                        <li>Pilot: 30 days</li>
+                        <li>Mass production: 90 days</li>
+                        <li>Retail: $49-99</li>
+                        <li>Margin: 65-75%</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cost-breakdown">
+                <h3 class="cost-title">Unit Cost Breakdown (1M Units)</h3>
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Processor (recycled)</td>
+                            <td>$5.00</td>
+                        </tr>
+                        <tr>
+                            <td>Camera module</td>
+                            <td>$3.00</td>
+                        </tr>
+                        <tr>
+                            <td>RAM (8GB LPDDR5)</td>
+                            <td>$2.00</td>
+                        </tr>
+                        <tr>
+                            <td>Storage (128GB UFS)</td>
+                            <td>$2.50</td>
+                        </tr>
+                        <tr>
+                            <td>PCB + components</td>
+                            <td>$1.50</td>
+                        </tr>
+                        <tr>
+                            <td>Housing + assembly</td>
+                            <td>$1.50</td>
+                        </tr>
+                        <tr>
+                            <td>Packaging</td>
+                            <td>$0.75</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>TOTAL</strong></td>
+                            <td><strong>$16.25</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Applications -->
-<section id="applications" class="section">
-    <h2 class="section-title">Applications</h2>
-    <div class="apps">
-        <div class="app">🏠 <strong>Smart Home</strong> — security, energy, accessibility, automation</div>
-        <div class="app">❤️ <strong>Healthcare</strong> — fall detection, vitals, elder care, mental health</div>
-        <div class="app">🚗 <strong>Transport</strong> — vehicles, fleet, public transit, emergency</div>
-        <div class="app">🌾 <strong>Agriculture</strong> — soil, irrigation, livestock, supply chain</div>
-        <div class="app">🏭 <strong>Industrial</strong> — buildings, manufacturing, retail, hospitality</div>
-        <div class="app">🎓 <strong>Education</strong> — classroom, remote, administration</div>
-        <div class="app">🚨 <strong>Public Safety</strong> — emergency response, infrastructure monitoring</div>
-        <div class="app">🐾 <strong>Pet & Family</strong> — geofencing, companion mode, child safety</div>
+<!-- Whitepaper Section -->
+<section class="whitepaper" id="whitepaper">
+    <div class="section-container">
+        <div class="whitepaper-content">
+            <div class="whitepaper-text">
+                <h2 class="whitepaper-title">Complete Technical Documentation</h2>
+                <p class="whitepaper-description">Download the full ATU-1 whitepaper with detailed architecture, applications, and economic analysis.</p>
+                <a href="docs/ATU_WHITEPAPER.txt" class="btn-primary btn-large">Download Whitepaper</a>
+            </div>
+            <div class="whitepaper-icon">
+                <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+                    <rect x="20" y="10" width="80" height="100" rx="4" stroke="#1428a0" stroke-width="2" fill="none"/>
+                    <path d="M35 35H85M35 50H85M35 65H65" stroke="#1428a0" stroke-width="2"/>
+                </svg>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Partner -->
-<section id="partner" class="section section-alt">
-    <h2 class="section-title">Samsung × Oroboros</h2>
-    <div class="partner-grid">
-        <div>
-            <h3>Samsung provides</h3>
-            <ul>
-                <li>Returned Snapdragon supply chain</li>
-                <li>Manufacturing & logistics</li>
-                <li>ISOCELL HP2 sensors</li>
-                <li>Retail distribution</li>
-            </ul>
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="section-container">
+        <div class="contact-content">
+            <h2 class="contact-title">Partnership Inquiries</h2>
+            <p class="contact-description">Interested in partnering with us? Get in touch.</p>
+            <a href="mailto:oroboroslabs.ai@gmail.com" class="btn-primary btn-large">oroboroslabs.ai@gmail.com</a>
         </div>
-        <div>
-            <h3>Oroboros provides</h3>
-            <ul>
-                <li>48³ Source Cube architecture</li>
-                <li>Kaiju-ATU compressed model</li>
-                <li>NOIR Security Nano</li>
-                <li>Universal protocol translation engine</li>
-            </ul>
-        </div>
-        <div>
-            <h3>Terms</h3>
-            <ul>
-                <li>Revenue share: 60 / 40 (Samsung / Oroboros)</li>
-                <li>Joint patent portfolio</li>
-                <li>Pilot in 30 days · mass production in 90</li>
-                <li>Retail $49–99 · margin 65–75%</li>
-            </ul>
-        </div>
-    </div>
-    <div class="partner-cta">
-        <a href="docs/ATU_WHITEPAPER.txt" class="btn btn-primary">Full Whitepaper</a>
-        <a href="mailto:oroboroslabs.ai@gmail.com?subject=ATU-1%20Partnership" class="btn btn-ghost">Contact Architect</a>
     </div>
 </section>
 
-<footer class="footer">
-    <div class="footer-inner">
-        <img src="assets/img/logo.svg" alt="Oroboros" class="footer-logo">
-        <div>
-            <div class="footer-title">OROBOROS LABS</div>
-            <div class="footer-sub">Architect Tier · ATU-1 White Paper v1.0 · April 2026</div>
-            <div class="footer-license">Licensed under the Oroboros Architect License (PolyForm Noncommercial 1.0.0). Commercial use requires written agreement.</div>
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="assets/img/oroboros-logo.svg" alt="Oroboros Labs" class="footer-logo">
+                <p class="footer-tagline">Universal intelligence for every home.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-link-group">
+                    <h4 class="footer-link-title">Product</h4>
+                    <a href="#overview" class="footer-link">Overview</a>
+                    <a href="#features" class="footer-link">Features</a>
+                    <a href="#specs" class="footer-link">Specifications</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4 class="footer-link-title">Resources</h4>
+                    <a href="#applications" class="footer-link">Applications</a>
+                    <a href="#whitepaper" class="footer-link">Whitepaper</a>
+                    <a href="#partnership" class="footer-link">Partnership</a>
+                </div>
+                <div class="footer-link-group">
+                    <h4 class="footer-link-title">Related Projects</h4>
+                    <a href="https://oroboroslabs-ai.github.io/architect-suit/" class="footer-link">Architect Suit</a>
+                    <a href="https://oroboroslab.github.io/project-2050-blueprint/" class="footer-link">Project 2050</a>
+                    <a href="https://oroboros.ai" class="footer-link">Oroboros.ai</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-left">
+                <span class="footer-copyright">© 2026 Oroboros Labs. All rights reserved.</span>
+                <span class="footer-license">Licensed under the Oroboros Architect License (PolyForm Noncommercial 1.0.0)</span>
+            </div>
+            <div class="footer-right">
+                <span class="footer-version">ATU-1 v1.0 — April 25, 2026</span>
+            </div>
         </div>
     </div>
 </footer>
