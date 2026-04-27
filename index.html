@@ -38,38 +38,46 @@
         a { color: inherit; text-decoration: none; }
         img { display: block; max-width: 100%; }
 
-        /* Classification bar */
+        /* Header bar */
         .classification-bar {
-            background: #0a0a0a;
+            background: #000;
             border-bottom: 1px solid #1a1a1a;
             padding: 8px 1.5rem;
             text-align: center;
-            font-size: 0.625rem;
+            font-size: 0.55rem;
             font-weight: 600;
             color: #ff3838;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
         }
         .classification-bar .sep {
             color: #444;
-            margin: 0 6px;
+            margin: 0 4px;
         }
-
-        /* Main header */
+        .classification-bar .bar-brand {
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.65rem;
+        }
+        .classification-bar .bar-pipe {
+            color: #444;
+            font-weight: 300;
+            margin: 0 4px;
+        }
+        .classification-bar .bar-sep {
+            display: inline-block;
+            width: 1px;
+            height: 10px;
+            background: #333;
+            margin: 0 12px;
+            vertical-align: middle;
+        }
         .site-header {
             position: sticky;
             top: 0;
             background: #000;
-            border-bottom: 1px solid #161616;
+            border-bottom: 1px solid #1a1a1a;
             z-index: 1000;
-        }
-        .site-header::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, rgba(33,137,255,0.3) 50%, transparent 100%);
         }
         .header-inner {
             max-width: 1440px;
@@ -78,19 +86,32 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 60px;
+            height: 44px;
         }
         .header-brand {
             font-family: 'Roboto', sans-serif;
-            font-size: 0.8125rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: #fff;
             letter-spacing: 0.06em;
             text-transform: uppercase;
+            white-space: nowrap;
         }
         .header-brand .bar {
             color: #444;
             font-weight: 300;
+            margin: 0 4px;
+        }
+        .header-classification {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: #ff3838;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .header-classification .sep {
+            color: #444;
             margin: 0 4px;
         }
         .main-nav {
@@ -1369,12 +1390,22 @@
 <body>
 
 <div class="classification-bar">
+    <span class="bar-brand">OROBOROS LABS <span class="bar-pipe">|</span> SAMSUNG</span>
+    <span class="bar-sep"></span>
     RESTRICTED <span class="sep">//</span> PROPRIETARY <span class="sep">//</span> OROBOROS INTERNAL USE ONLY <span class="sep">//</span> LEVEL 5 CLEARANCE REQUIRED
 </div>
 
 <header class="site-header">
     <div class="header-inner">
         <div class="header-brand">OROBOROS LABS <span class="bar">|</span> SAMSUNG MOBILE</div>
+        <nav class="main-nav">
+            <a href="#highlights">Highlights</a>
+            <a href="#camera">Camera</a>
+            <a href="#configurator">Configure</a>
+            <a href="#specs">Specs</a>
+            <a href="#compare">Compare</a>
+            <a href="#whitepaper">Whitepaper</a>
+        </nav>
     </div>
 </header>
 
