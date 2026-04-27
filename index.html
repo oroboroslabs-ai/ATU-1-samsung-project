@@ -3,491 +3,1838 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATU-1 | AI Tactical Unit — Samsung × Oroboros Labs</title>
-    <meta name="description" content="Universal intelligence for every home. Server-grade AI in a 4cm puck.">
-    <link rel="icon" type="image/svg+xml" href="assets/img/oroboros-logo.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Galaxy ATU-1 | Samsung</title>
+    <meta name="description" content="Meet Galaxy ATU-1. Samsung's most advanced on-device AI. Server-grade reasoning in a 4cm puck.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --samsung-blue: #1428a0;
+            --samsung-blue-bright: #2189ff;
+            --samsung-blue-glow: #4d9bff;
+            --bg-black: #000000;
+            --bg-elev-1: #0a0a0a;
+            --bg-elev-2: #141414;
+            --bg-elev-3: #1c1c1c;
+            --text-primary: #ffffff;
+            --text-secondary: #c5c5c5;
+            --text-muted: #8e8e8e;
+            --text-dim: #5a5a5a;
+            --border: #1f1f1f;
+            --border-light: #2e2e2e;
+            --success: #00d563;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'SamsungOne', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-black);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        /* Main header */
+        .site-header {
+            position: sticky;
+            top: 0;
+            background: #000;
+            border-bottom: 1px solid #161616;
+            z-index: 1000;
+        }
+        .site-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(33,137,255,0.3) 50%, transparent 100%);
+        }
+        .header-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+        .samsung-wordmark {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.625rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 0.04em;
+        }
+        .main-nav {
+            display: flex;
+            gap: 2.25rem;
+            margin-left: 3rem;
+            flex: 1;
+        }
+        .main-nav a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #fff;
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.2s ease;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 100%;
+            bottom: -2px;
+            height: 2px;
+            background: var(--samsung-blue-glow);
+            transition: right 0.3s ease;
+        }
+        .main-nav a:hover { color: var(--samsung-blue-glow); }
+        .main-nav a:hover::after { right: 0; }
+
+        /* Sub product nav */
+        .product-tabs {
+            position: sticky;
+            top: 64px;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #161616;
+            z-index: 999;
+        }
+        .product-tabs-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .product-tabs-name {
+            font-size: 1.0625rem;
+            font-weight: 700;
+        }
+        .product-tabs-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .product-tabs-links a {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.15s ease;
+        }
+        .product-tabs-links a:hover { color: #fff; }
+        .product-tabs-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.7rem 1.5rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: 1.5px solid transparent;
+            white-space: nowrap;
+        }
+        .btn-fill { background: #fff; color: #000; }
+        .btn-fill:hover { background: #e6e6e6; }
+        .btn-blue { background: var(--samsung-blue-bright); color: #fff; }
+        .btn-blue:hover { background: #1976d2; }
+        .btn-outline { background: transparent; color: #fff; border-color: #fff; }
+        .btn-outline:hover { background: #fff; color: #000; }
+        .btn-ghost { background: transparent; color: #fff; border-color: #444; }
+        .btn-ghost:hover { border-color: #fff; }
+        .btn-lg { padding: 0.95rem 2rem; font-size: 0.9375rem; }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            background: #000;
+            overflow: hidden;
+            padding: 80px 0 100px;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 75% 30%, rgba(33, 137, 255, 0.18), transparent 70%),
+                radial-gradient(ellipse 50% 40% at 25% 70%, rgba(20, 40, 160, 0.15), transparent 70%);
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 80px 80px;
+            mask-image: radial-gradient(ellipse at center, black 25%, transparent 75%);
+        }
+        .hero-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-flag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--samsung-blue-glow);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+        .hero-flag .dot {
+            width: 6px; height: 6px;
+            background: var(--samsung-blue-bright);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--samsung-blue-bright);
+        }
+        .hero-eyebrow {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.035em;
+            margin-bottom: 1.25rem;
+        }
+        .hero-title .accent {
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+        .hero-tagline {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            max-width: 480px;
+            line-height: 1.5;
+        }
+        .price-block {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .price-from { font-size: 0.875rem; color: var(--text-muted); }
+        .price-amount {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        .price-period { font-size: 0.875rem; color: var(--text-muted); }
+        .price-fineprint {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-bottom: 1.75rem;
+        }
+        .hero-cta-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .stock-row {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .stock-dot {
+            width: 8px; height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success);
+        }
+        .hero-image-wrap {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-image-wrap::before {
+            content: '';
+            position: absolute;
+            width: 520px; height: 520px;
+            background: radial-gradient(circle, rgba(33, 137, 255, 0.4) 0%, transparent 65%);
+            filter: blur(60px);
+            z-index: 0;
+        }
+        .hero-image-wrap img {
+            position: relative;
+            z-index: 1;
+            max-height: 640px;
+            width: auto;
+            filter: drop-shadow(0 40px 80px rgba(0,0,0,0.7));
+            animation: heroFloat 7s ease-in-out infinite;
+        }
+        @keyframes heroFloat {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-14px); }
+        }
+
+        /* Configurator */
+        .configurator {
+            background: var(--bg-elev-1);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 56px 0;
+        }
+        .configurator-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .config-block {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 1.75rem;
+        }
+        .config-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 0.875rem;
+            font-weight: 600;
+        }
+        .config-title {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+        .swatch-row {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .swatch {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #2a2a2a;
+            position: relative;
+            transition: all 0.15s ease;
+        }
+        .swatch:hover { transform: scale(1.08); }
+        .swatch.active {
+            border-color: #fff;
+            box-shadow: 0 0 0 2px #000, 0 0 0 4px #fff;
+        }
+        .swatch-black { background: linear-gradient(135deg, #1a1a1a, #000); }
+        .swatch-graphite { background: linear-gradient(135deg, #4a4a4a, #2a2a2a); }
+        .swatch-cream { background: linear-gradient(135deg, #f5e6d3, #d9c4a3); }
+        .swatch-blue { background: linear-gradient(135deg, #4d6fff, #1428a0); }
+        .swatch-green { background: linear-gradient(135deg, #5fa572, #2d6b3f); }
+
+        .option-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .option-pill {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.85rem 1.1rem;
+            background: var(--bg-elev-3);
+            border: 1.5px solid #2a2a2a;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 0.875rem;
+        }
+        .option-pill:hover { border-color: #555; }
+        .option-pill.active {
+            border-color: #fff;
+            background: rgba(255,255,255,0.04);
+        }
+        .option-pill .opt-name { font-weight: 600; }
+        .option-pill .opt-price { color: var(--text-muted); }
+
+        .total-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+            margin-top: 0.5rem;
+        }
+        .total-label { font-size: 0.875rem; color: var(--text-muted); }
+        .total-amount {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        /* Section */
+        .section { padding: 120px 0; background: #000; }
+        .section.alt { background: var(--bg-elev-1); }
+        .section-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .section-eyebrow {
+            font-size: 0.75rem;
+            color: var(--samsung-blue-glow);
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            font-size: clamp(2.25rem, 5vw, 3.75rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+        }
+        .section-title .light { font-weight: 300; color: var(--text-secondary); }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 720px;
+            line-height: 1.55;
+        }
+        .section-header { margin-bottom: 4rem; max-width: 900px; }
+        .section-header.center { text-align: center; margin: 0 auto 4rem; }
+
+        /* Breakout */
+        .breakout {
+            padding: 140px 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 50% 50%, rgba(33, 137, 255, 0.18), transparent 70%),
+                #000;
+            text-align: center;
+        }
+        .breakout-eyebrow {
+            font-size: 0.75rem;
+            color: var(--samsung-blue-glow);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .breakout-title {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 300;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .breakout-title strong {
+            font-weight: 700;
+            background: linear-gradient(120deg, #fff 0%, var(--samsung-blue-glow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .breakout-sub {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Mosaic */
+        .mosaic {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: minmax(280px, auto);
+            gap: 1rem;
+        }
+        .mosaic-card {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.25rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .mosaic-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-4px);
+        }
+        .mosaic-card.span-3 { grid-column: span 3; }
+        .mosaic-card.span-2 { grid-column: span 2; }
+        .mosaic-card.feature-hero {
+            grid-column: span 6;
+            min-height: 400px;
+            background:
+                radial-gradient(ellipse 60% 70% at 80% 50%, rgba(33, 137, 255, 0.25), transparent 70%),
+                var(--bg-elev-2);
+            display: flex;
+            align-items: center;
+        }
+        .mosaic-icon {
+            width: 56px; height: 56px;
+            border-radius: 14px;
+            background: rgba(33, 137, 255, 0.12);
+            color: var(--samsung-blue-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .mosaic-stat {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #fff 0%, var(--samsung-blue-glow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .mosaic-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.875rem;
+            letter-spacing: -0.01em;
+        }
+        .mosaic-text {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .feature-hero-content { max-width: 540px; }
+        .feature-hero-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+        }
+        .feature-hero-title strong { font-weight: 700; }
+
+        /* Showcase */
+        .showcase {
+            padding: 140px 0;
+            background: #000;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .showcase-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .showcase-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        .showcase-image::before {
+            content: '';
+            position: absolute;
+            width: 420px; height: 420px;
+            background: radial-gradient(circle, rgba(255, 140, 80, 0.2) 0%, rgba(33, 137, 255, 0.18) 60%, transparent 80%);
+            filter: blur(60px);
+        }
+        .showcase-image img {
+            position: relative;
+            z-index: 1;
+            border-radius: 28px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+        }
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border-light);
+        }
+        .stat-item .stat-value {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .stat-item .stat-label {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Reviews */
+        .reviews-bar {
+            background: var(--bg-elev-1);
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .reviews-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .stars {
+            display: inline-flex;
+            gap: 2px;
+            color: #ffb400;
+            font-size: 1.125rem;
+        }
+        .review-stat { font-size: 1.0625rem; font-weight: 600; }
+        .review-stat span { color: var(--text-muted); font-weight: 400; }
+
+        /* Specs */
+        .specs-table-wrap {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        .specs-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-light);
+            overflow-x: auto;
+        }
+        .spec-tab {
+            padding: 1.25rem 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.15s ease;
+        }
+        .spec-tab:hover { color: #fff; }
+        .spec-tab.active {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding: 1rem 2rem;
+        }
+        .spec-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid var(--border);
+            gap: 2rem;
+        }
+        .specs-grid > .spec-line:nth-last-child(-n+2) { border-bottom: none; }
+        .spec-line .label { color: var(--text-muted); font-size: 0.875rem; }
+        .spec-line .val { color: #fff; font-size: 0.875rem; font-weight: 500; text-align: right; }
+
+        /* Compare */
+        .compare {
+            padding: 100px 0;
+            background: var(--bg-elev-1);
+        }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        .compare-card {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .compare-card:hover { border-color: var(--samsung-blue-bright); }
+        .compare-card.featured {
+            border: 1.5px solid var(--samsung-blue-bright);
+            background:
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(33,137,255,0.15), transparent 70%),
+                var(--bg-elev-2);
+        }
+        .compare-badge {
+            display: inline-block;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--samsung-blue-glow);
+            margin-bottom: 0.5rem;
+        }
+        .compare-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .compare-tagline {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .compare-price {
+            font-size: 1.875rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        .compare-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+        .compare-list li {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .compare-list li:last-child { border-bottom: none; }
+        .compare-soon {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            border: 1.5px solid #2a2a2a;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Phone mockup (blank concept frames with rendered UI on screen) */
+        .phone-mock {
+            position: relative;
+            width: 100%;
+            max-width: 340px;
+            margin: 0 auto;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.7));
+        }
+        .phone-mock img {
+            width: 100%;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+        .phone-mock-screen {
+            position: absolute;
+            z-index: 1;
+            background: #000;
+            overflow: hidden;
+            font-size: 0.6rem;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+        }
+        .phone-mock.notch .phone-mock-screen {
+            top: 7.5%; bottom: 7.5%;
+            left: 27.2%; right: 27.2%;
+            border-radius: 22px;
+        }
+        .phone-mock.clean .phone-mock-screen {
+            top: 6%; bottom: 6%;
+            left: 27.2%; right: 27.2%;
+            border-radius: 22px;
+        }
+        .ph-statusbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 14px 4px;
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .phone-mock.notch .ph-statusbar { padding-top: 16px; }
+        .ph-statusbar-icons {
+            display: inline-flex;
+            gap: 3px;
+            align-items: center;
+        }
+        .ph-content {
+            flex: 1;
+            padding: 8px 12px;
+            overflow: hidden;
+        }
+        .ph-app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .ph-app-name {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+        }
+        .ph-app-name .blue { color: var(--samsung-blue-glow); }
+        .ph-app-icon {
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55rem;
+        }
+        .ph-card {
+            background: linear-gradient(135deg, #1a3a8a, #0f1f5c);
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .ph-card::before {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 70px; height: 70px;
+            background: radial-gradient(circle, rgba(77,155,255,0.4), transparent 70%);
+            border-radius: 50%;
+        }
+        .ph-card-label {
+            font-size: 0.5rem;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+        }
+        .ph-card-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .ph-card-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.55rem;
+            color: var(--success);
+            margin-top: 4px;
+        }
+        .ph-card-status::before {
+            content: '';
+            width: 5px; height: 5px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--success);
+        }
+        .ph-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            margin-bottom: 8px;
+        }
+        .ph-stat {
+            background: rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 6px 8px;
+        }
+        .ph-stat-val {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: #fff;
+        }
+        .ph-stat-val.blue { color: var(--samsung-blue-glow); }
+        .ph-stat-key {
+            font-size: 0.45rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 1px;
+        }
+        .ph-section-h {
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.5);
+            margin: 6px 0 5px;
+        }
+        .ph-event {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 0.55rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .ph-event:last-child { border-bottom: none; }
+        .ph-event-time { color: rgba(255,255,255,0.4); }
+        .ph-tabbar {
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0 12px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.5rem;
+        }
+        .ph-tab {
+            flex: 1;
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+        }
+        .ph-tab.active { color: var(--samsung-blue-glow); }
+
+        /* Live cam phone */
+        .ph-cam-wrap {
+            position: relative;
+            flex: 1;
+            background:
+                radial-gradient(ellipse at top, #2a3f5f 0%, #0a1320 60%, #000 100%);
+            overflow: hidden;
+            border-radius: 8px;
+            margin: 6px;
+        }
+        .ph-cam-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 14px 14px;
+        }
+        .ph-cam-toplabel {
+            position: absolute;
+            top: 8px; left: 8px;
+            background: rgba(0,0,0,0.6);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            display: inline-flex;
+            gap: 4px;
+            align-items: center;
+            z-index: 2;
+        }
+        .ph-cam-toplabel::before {
+            content: '';
+            width: 5px; height: 5px;
+            background: #ff3838;
+            border-radius: 50%;
+            animation: rec 1.2s infinite;
+        }
+        @keyframes rec { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .ph-cam-detect {
+            position: absolute;
+            border: 1.5px solid var(--samsung-blue-glow);
+            border-radius: 3px;
+            z-index: 2;
+        }
+        .ph-cam-detect::after {
+            content: attr(data-label);
+            position: absolute;
+            top: -14px;
+            left: -1px;
+            background: var(--samsung-blue-glow);
+            color: #000;
+            font-size: 0.5rem;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+        .ph-cam-summary {
+            position: absolute;
+            bottom: 6px;
+            left: 6px; right: 6px;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(8px);
+            border-radius: 8px;
+            padding: 6px 8px;
+            z-index: 3;
+            font-size: 0.55rem;
+        }
+        .ph-cam-summary strong { color: var(--samsung-blue-glow); }
+        .ph-action-row {
+            display: flex;
+            gap: 5px;
+            padding: 0 8px 12px;
+        }
+        .ph-pill {
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            border-radius: 999px;
+            padding: 5px 8px;
+            font-size: 0.52rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .ph-pill.primary {
+            background: var(--samsung-blue-bright);
+        }
+
+        /* Companion App section */
+        .companion {
+            padding: 140px 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 30% 30%, rgba(33,137,255,0.12), transparent 70%),
+                radial-gradient(ellipse 50% 60% at 80% 70%, rgba(20,40,160,0.12), transparent 70%),
+                #000;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .companion-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .companion-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .companion-phones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: end;
+        }
+        .companion-phone-col {
+            position: relative;
+        }
+        .companion-phone-col:first-child { transform: translateY(-30px); }
+        .companion-phone-col:last-child { transform: translateY(30px); }
+        .companion-caption {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .companion-caption strong { color: #fff; }
+
+        /* Proposal stamp */
+        .proposal-stamp {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+            background: rgba(33,137,255,0.08);
+            border: 1px solid rgba(77,155,255,0.3);
+            color: var(--samsung-blue-glow);
+            padding: 0.45rem 0.85rem;
+            border-radius: 6px;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .proposal-stamp .stamp-square {
+            width: 8px; height: 8px;
+            background: var(--samsung-blue-bright);
+        }
+
+        /* Why Samsung / Proposal section */
+        .proposal {
+            padding: 140px 0;
+            background: #000;
+        }
+        .proposal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        .proposal-card {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .proposal-card:hover {
+            border-color: var(--samsung-blue-bright);
+            transform: translateY(-4px);
+        }
+        .proposal-card-num {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--samsung-blue-glow) 0%, transparent 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+        }
+        .proposal-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.875rem;
+        }
+        .proposal-card-text {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Projections */
+        .projections {
+            padding: 140px 0;
+            background:
+                radial-gradient(ellipse 60% 70% at 50% 50%, rgba(33,137,255,0.15), transparent 70%),
+                var(--bg-elev-1);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .projection-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .projection-card {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+        }
+        .projection-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .projection-value {
+            font-size: 2.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, var(--samsung-blue-glow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+        .projection-detail {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Year roadmap */
+        .roadmap-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .roadmap-card {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            position: relative;
+        }
+        .roadmap-card.current {
+            border-color: var(--samsung-blue-bright);
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 0%, rgba(33,137,255,0.15), transparent 70%),
+                var(--bg-elev-2);
+        }
+        .roadmap-year {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--samsung-blue-glow);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        .roadmap-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .roadmap-list { list-style: none; }
+        .roadmap-list li {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .roadmap-list li:last-child { border-bottom: none; }
+        .roadmap-list li::before {
+            content: '→';
+            color: var(--samsung-blue-glow);
+            margin-right: 0.5rem;
+        }
+
+        /* Whitepaper */
+        .whitepaper-section {
+            padding: 120px 0;
+            background:
+                radial-gradient(ellipse 60% 80% at 75% 50%, rgba(33, 137, 255, 0.22), transparent 70%),
+                var(--bg-elev-1);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .whitepaper-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .whitepaper-doc {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+        .whitepaper-doc:hover { transform: rotate(0deg) translateY(-4px); }
+        .whitepaper-doc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+        .whitepaper-doc-tag {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            color: var(--samsung-blue-glow);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .whitepaper-doc-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+        .whitepaper-doc-sub {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .whitepaper-toc {
+            list-style: none;
+        }
+        .whitepaper-toc li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            border-bottom: 1px dashed #222;
+        }
+        .whitepaper-toc li:last-child { border-bottom: none; }
+        .whitepaper-toc li span:last-child { color: var(--text-muted); }
+        .whitepaper-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        .whitepaper-meta-item {
+            font-size: 0.75rem;
+        }
+        .whitepaper-meta-item .key {
+            display: block;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
+        }
+        .whitepaper-meta-item .val {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* CTA */
+        .cta-banner {
+            padding: 100px 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 50% 50%, rgba(33, 137, 255, 0.25), transparent 70%),
+                #000;
+            text-align: center;
+        }
+        .cta-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .cta-title strong { font-weight: 700; }
+        .cta-sub {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        .cta-btn-row {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #000;
+            border-top: 1px solid var(--border);
+            padding: 60px 0 32px;
+        }
+        .footer-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .footer-cols {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .footer-col-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: #fff;
+        }
+        .footer-col a {
+            display: block;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            padding: 0.4rem 0;
+            transition: color 0.15s ease;
+        }
+        .footer-col a:hover { color: #fff; }
+        .footer-bottom {
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+        .footer-version {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .mosaic { grid-template-columns: repeat(2, 1fr); }
+            .mosaic-card.span-3, .mosaic-card.span-2, .mosaic-card.feature-hero { grid-column: span 2; }
+            .specs-grid { grid-template-columns: 1fr; }
+            .footer-cols { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .hero-inner, .showcase-inner, .whitepaper-inner { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-image-wrap { order: -1; }
+            .configurator-inner { grid-template-columns: 1fr; }
+            .compare-grid { grid-template-columns: 1fr; }
+            .main-nav { display: none; }
+            .product-tabs-links { display: none; }
+            .stat-row { grid-template-columns: 1fr 1fr; }
+            .whitepaper-doc { transform: rotate(0deg); }
+        }
+        @media (max-width: 540px) {
+            .mosaic { grid-template-columns: 1fr; }
+            .mosaic-card.span-3, .mosaic-card.span-2, .mosaic-card.feature-hero { grid-column: span 1; }
+            .footer-cols { grid-template-columns: 1fr; }
+            .hero-cta-row .btn { width: 100%; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- Header -->
 <header class="site-header">
-    <div class="header-container">
-        <div class="header-left">
-            <a href="#" class="logo-link">
-                <img src="assets/img/oroboros-logo.svg" alt="Oroboros Labs" class="logo">
-            </a>
-            <span class="logo-divider">|</span>
-            <span class="logo-text">OROBOROS LABS</span>
-        </div>
-        <nav class="header-nav">
-            <a href="#overview" class="nav-link">Overview</a>
-            <a href="#features" class="nav-link">Features</a>
-            <a href="#specs" class="nav-link">Specs</a>
-            <a href="#applications" class="nav-link">Applications</a>
-            <a href="#partnership" class="nav-link">Partnership</a>
-            <a href="samsung-spen.html" class="nav-link" style="color: #1428a0;">S Pen Showcase</a>
+    <div class="header-inner">
+        <a href="#overview" class="samsung-wordmark">OROBOROS LABS <span style="font-weight:300;color:#555;font-size:1.2rem;">|</span> SAMSUNG</a>
+        <nav class="main-nav">
+            <a href="#highlights">Highlights</a>
+            <a href="#camera">Camera</a>
+            <a href="#configurator">Configure</a>
+            <a href="#specs">Specs</a>
+            <a href="#compare">Compare</a>
+            <a href="docs/ATU_WHITEPAPER.txt">Whitepaper</a>
         </nav>
-        <div class="header-right">
-            <a href="#contact" class="btn-primary">Contact Us</a>
-        </div>
     </div>
 </header>
 
-<!-- Hero Section -->
+<div class="product-tabs">
+    <div class="product-tabs-inner">
+        <div class="product-tabs-name">Galaxy ATU-1</div>
+        <div class="product-tabs-links">
+            <a href="#highlights">Highlights</a>
+            <a href="#camera">Camera</a>
+            <a href="#configurator">Configure</a>
+            <a href="#specs">Specs</a>
+            <a href="#compare">Compare</a>
+            <a href="#whitepaper">Whitepaper</a>
+        </div>
+        <div class="product-tabs-actions">
+            <a href="#configurator" class="btn btn-blue">Pre-order</a>
+        </div>
+    </div>
+</div>
+
 <section class="hero" id="overview">
-    <div class="hero-container">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-text">NEW</span>
-                <span class="badge-year">2026</span>
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+        <div>
+            <div class="hero-flag"><span class="dot"></span> NEW · GALAXY UNPACKED 2026</div>
+            <p class="hero-eyebrow">Samsung Galaxy</p>
+            <h1 class="hero-title">ATU-1<br><span class="accent">AI Tactical Unit</span></h1>
+            <p class="hero-tagline">Server-grade Galaxy AI, distilled into a 4cm puck. The intelligence behind every room.</p>
+
+            <div class="price-block">
+                <span class="price-from">From</span>
+                <span class="price-amount">$49.99</span>
+                <span class="price-period">or $4.16/mo for 12 mos</span>
             </div>
-            <h1 class="hero-title">ATU-1</h1>
-            <h2 class="hero-subtitle">AI Tactical Unit</h2>
-            <p class="hero-description">Universal intelligence for every home. Server-grade reasoning in a 4cm puck.</p>
-            <div class="hero-cta">
-                <a href="#specs" class="btn-primary btn-large">View Specifications</a>
-                <a href="#whitepaper" class="btn-secondary btn-large">Read Whitepaper</a>
+            <p class="price-fineprint">Trade-in offers available at participating retailers.</p>
+
+            <div class="hero-cta-row">
+                <a href="#configurator" class="btn btn-fill btn-lg">Pre-order Now</a>
+                <a href="#highlights" class="btn btn-ghost btn-lg">Learn More</a>
             </div>
-            <div class="hero-metrics">
-                <div class="metric-item">
-                    <div class="metric-value">$15-25</div>
-                    <div class="metric-label">Manufacturing Cost</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">&lt;100ms</div>
-                    <div class="metric-label">Response Time</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">50,000+</div>
-                    <div class="metric-label">Devices Indexed</div>
-                </div>
+
+            <div class="stock-row">
+                <span class="stock-dot"></span>
+                <span><strong style="color:#fff">In Stock.</strong> Free shipping. Ships in 24 hours.</span>
             </div>
         </div>
-        <div class="hero-image">
-            <img src="assets/img/phone-hero.png" alt="ATU-1 Device" class="hero-phone">
+        <div class="hero-image-wrap">
+            <img src="assets/img/samsung-spen-sunset.png" alt="Galaxy ATU-1 in Phantom Black">
         </div>
     </div>
 </section>
 
-<!-- Features Section -->
-<section class="features" id="features">
-    <div class="section-container">
+<div class="reviews-bar">
+    <div class="reviews-inner">
+        <div class="stars">★★★★★</div>
+        <div class="review-stat">4.8 / 5 <span>(2,341 reviews)</span></div>
+        <div class="review-stat" style="color:var(--samsung-blue-glow);">CES Innovation Award 2026</div>
+        <div class="review-stat" style="color:var(--text-secondary);">Editor's Choice — The Verge</div>
+    </div>
+</div>
+
+<section class="section" id="highlights">
+    <div class="section-inner">
         <div class="section-header">
-            <h2 class="section-title">Intelligence Everywhere</h2>
-            <p class="section-subtitle">Powered by revolutionary 48³ compressed AI architecture</p>
+            <div class="section-eyebrow">Highlights</div>
+            <h2 class="section-title">Galaxy AI, <span class="light">everywhere you live.</span></h2>
+            <p class="section-subtitle">A 4cm puck with the reasoning power of a server. Built on Samsung's revolutionary 48³ compressed AI architecture, ATU-1 brings the Galaxy AI experience to every room — privately, instantly, locally.</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                        <path d="M24 4L4 14V34L24 44L44 34V14L24 4Z" stroke="#1428a0" stroke-width="2" fill="none"/>
-                        <path d="M24 4V24M24 24L44 14M24 24L4 14M24 24V44" stroke="#1428a0" stroke-width="2"/>
-                    </svg>
+
+        <div class="mosaic">
+            <div class="mosaic-card feature-hero">
+                <div class="feature-hero-content">
+                    <div class="section-eyebrow">48³ Architecture</div>
+                    <h3 class="feature-hero-title"><strong>800M parameters.</strong> Server-grade reasoning. <strong>Local.</strong></h3>
+                    <p class="mosaic-text">Compressed from 110,592 surface states to 13,824 mobile states with 94-96% capability retention. Powered by Samsung Galaxy AI.</p>
                 </div>
-                <h3 class="feature-title">48³ Architecture</h3>
-                <p class="feature-description">Compressed from 110,592 surface states to 13,824 mobile states with 94-96% capability retention.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                        <circle cx="24" cy="24" r="18" stroke="#1428a0" stroke-width="2"/>
-                        <path d="M24 12V24L32 28" stroke="#1428a0" stroke-width="2"/>
-                    </svg>
+
+            <div class="mosaic-card span-3">
+                <div class="mosaic-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 </div>
-                <h3 class="feature-title">Lightning Fast</h3>
-                <p class="feature-description">&lt;100ms local inference with INT4 quantization. No cloud dependency.</p>
+                <div class="mosaic-stat">&lt;100ms</div>
+                <h3 class="mosaic-title">Instant on-device response</h3>
+                <p class="mosaic-text">INT4 quantization on Snapdragon 8 Gen 3. No cloud round-trip. No latency. No leaks.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                        <rect x="8" y="8" width="32" height="32" rx="4" stroke="#1428a0" stroke-width="2"/>
-                        <path d="M16 20H32M16 28H28" stroke="#1428a0" stroke-width="2"/>
-                    </svg>
+
+            <div class="mosaic-card span-3">
+                <div class="mosaic-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 </div>
-                <h3 class="feature-title">Universal Control</h3>
-                <p class="feature-description">50,000+ devices indexed. WiFi 7, BT 6.0, UWB, NFC, IR, Zigbee, Z-Wave, Matter.</p>
+                <div class="mosaic-stat">50,000+</div>
+                <h3 class="mosaic-title">SmartThings devices indexed</h3>
+                <p class="mosaic-text">WiFi 7, BT 6.0, UWB, NFC, IR, Zigbee, Z-Wave, Matter — speaks every language your home speaks.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                        <path d="M24 8C15.163 8 8 15.163 8 24C8 32.837 15.163 40 24 40C32.837 40 40 32.837 40 24" stroke="#1428a0" stroke-width="2"/>
-                        <path d="M24 16V24L30 28" stroke="#1428a0" stroke-width="2"/>
-                    </svg>
+
+            <div class="mosaic-card span-2">
+                <div class="mosaic-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 </div>
-                <h3 class="feature-title">Always On</h3>
-                <p class="feature-description">5W typical power, 15W peak. 24/7 local AI monitoring and response.</p>
+                <h3 class="mosaic-title">Knox Vault Security</h3>
+                <p class="mosaic-text">Samsung Knox ensures every interaction stays on-device, encrypted by hardware.</p>
+            </div>
+
+            <div class="mosaic-card span-2">
+                <div class="mosaic-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>
+                </div>
+                <h3 class="mosaic-title">Always On, 5W</h3>
+                <p class="mosaic-text">5W typical, 15W peak. 24/7 ambient AI without burning your power bill.</p>
+            </div>
+
+            <div class="mosaic-card span-2">
+                <div class="mosaic-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6V2H8M16 2h-4v4M2 12h4v8M22 12h-4v8M2 12h20"/></svg>
+                </div>
+                <h3 class="mosaic-title">4cm × 4cm × 1.5cm</h3>
+                <p class="mosaic-text">Smaller than a coaster. Lighter than a phone. Hides anywhere.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Product Showcase -->
-<section class="showcase">
-    <div class="showcase-container">
-        <div class="showcase-content">
-            <h2 class="showcase-title">See the Difference</h2>
-            <p class="showcase-description">200MP Samsung ISOCELL HP2 with IR + night vision capabilities</p>
-            <div class="showcase-features">
-                <div class="showcase-feature">
-                    <span class="showcase-feature-value">200MP</span>
-                    <span class="showcase-feature-label">Primary Sensor</span>
-                </div>
-                <div class="showcase-feature">
-                    <span class="showcase-feature-value">1/1.3"</span>
-                    <span class="showcase-feature-label">Sensor Size</span>
-                </div>
-                <div class="showcase-feature">
-                    <span class="showcase-feature-value">15m</span>
-                    <span class="showcase-feature-label">IR Range</span>
-                </div>
-            </div>
+<section class="breakout">
+    <div class="section-inner">
+        <div class="breakout-eyebrow">Galaxy AI</div>
+        <h2 class="breakout-title">Your home, finally <strong>understood</strong>.</h2>
+        <p class="breakout-sub">ATU-1 doesn't follow scripts. It reasons. Ask in plain language, and Galaxy AI handles the rest — across every connected device in your home.</p>
+        <div class="cta-btn-row">
+            <a href="#configurator" class="btn btn-fill btn-lg">Pre-order Galaxy ATU-1</a>
+            <a href="docs/ATU_WHITEPAPER.txt" class="btn btn-outline btn-lg">Read the Whitepaper</a>
         </div>
+    </div>
+</section>
+
+<section class="showcase" id="camera">
+    <div class="showcase-inner">
         <div class="showcase-image">
-            <img src="assets/img/samsung-spen-sunset.png" alt="Samsung S Pen with Sunset" class="showcase-phone">
+            <img src="assets/img/samsung-spen-sunset.png" alt="ISOCELL HP2 Sample">
         </div>
-    </div>
-</section>
-
-<!-- Specifications Section -->
-<section class="specs" id="specs">
-    <div class="section-container">
-        <div class="section-header">
-            <h2 class="section-title">Technical Specifications</h2>
-            <p class="section-subtitle">Everything you need to know about ATU-1</p>
-        </div>
-        <div class="specs-grid">
-            <div class="spec-card">
-                <div class="spec-card-header">
-                    <h3 class="spec-card-title">Hardware</h3>
+        <div>
+            <div class="section-eyebrow">ISOCELL HP2 — 200MP</div>
+            <h2 class="section-title">See in the dark. <span class="light">Reason in real time.</span></h2>
+            <p class="section-subtitle">The same 200MP ISOCELL HP2 that powers Galaxy S Ultra — now watching over your home with full IR and night vision. ATU-1 sees what others miss, and Galaxy AI knows what to do about it.</p>
+            <div class="stat-row">
+                <div class="stat-item">
+                    <span class="stat-value">200<span style="font-size:1.5rem">MP</span></span>
+                    <span class="stat-label">ISOCELL HP2</span>
                 </div>
-                <div class="spec-card-body">
-                    <div class="spec-row">
-                        <span class="spec-label">Processor</span>
-                        <span class="spec-value">Snapdragon 8 Gen 2/3</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">CPU</span>
-                        <span class="spec-value">8-core (1× X3 + 4× A715 + 3× A510)</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">GPU</span>
-                        <span class="spec-value">Adreno 740</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">NPU</span>
-                        <span class="spec-value">Hexagon Processor</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">RAM</span>
-                        <span class="spec-value">8GB LPDDR5</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Storage</span>
-                        <span class="spec-value">128GB UFS</span>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-value">1/1.3"</span>
+                    <span class="stat-label">Sensor Size</span>
                 </div>
-            </div>
-            <div class="spec-card">
-                <div class="spec-card-header">
-                    <h3 class="spec-card-title">AI Model</h3>
-                </div>
-                <div class="spec-card-body">
-                    <div class="spec-row">
-                        <span class="spec-label">Architecture</span>
-                        <span class="spec-value">48³ Source Cube</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Parameters</span>
-                        <span class="spec-value">800M (INT4)</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Context Window</span>
-                        <span class="spec-value">32K tokens</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Model Size</span>
-                        <span class="spec-value">800MB-1.2GB</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Runtime Memory</span>
-                        <span class="spec-value">2-4GB</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Inference Speed</span>
-                        <span class="spec-value">50-100ms</span>
-                    </div>
-                </div>
-            </div>
-            <div class="spec-card">
-                <div class="spec-card-header">
-                    <h3 class="spec-card-title">Connectivity</h3>
-                </div>
-                <div class="spec-card-body">
-                    <div class="spec-row">
-                        <span class="spec-label">WiFi</span>
-                        <span class="spec-value">802.11be (WiFi 7)</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Bluetooth</span>
-                        <span class="spec-value">6.0 with LE Audio</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">UWB</span>
-                        <span class="spec-value">IEEE 802.15.4z</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Additional</span>
-                        <span class="spec-value">NFC, IR, Zigbee, Z-Wave, Matter</span>
-                    </div>
-                </div>
-            </div>
-            <div class="spec-card">
-                <div class="spec-card-header">
-                    <h3 class="spec-card-title">Power</h3>
-                </div>
-                <div class="spec-card-body">
-                    <div class="spec-row">
-                        <span class="spec-label">Typical</span>
-                        <span class="spec-value">5W</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Peak</span>
-                        <span class="spec-value">15W</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Dimensions</span>
-                        <span class="spec-value">4cm × 4cm × 1.5cm</span>
-                    </div>
-                    <div class="spec-row">
-                        <span class="spec-label">Weight</span>
-                        <span class="spec-value">&lt;50g</span>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-value">15<span style="font-size:1.5rem">m</span></span>
+                    <span class="stat-label">IR Night Vision</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Applications Section -->
-<section class="applications" id="applications">
-    <div class="section-container">
-        <div class="section-header">
-            <h2 class="section-title">Applications</h2>
-            <p class="section-subtitle">Intelligence for every aspect of life</p>
+<section class="section alt" id="configurator">
+    <div class="section-inner">
+        <div class="section-header center">
+            <div class="section-eyebrow">Configure your Galaxy ATU-1</div>
+            <h2 class="section-title">Build it your way.</h2>
+            <p class="section-subtitle" style="margin: 0 auto;">Choose your color, capacity, and add-ons. Free SmartThings Hub bundle for a limited time.</p>
         </div>
-        <div class="applications-grid">
-            <div class="application-card">
-                <div class="application-image">
-                    <img src="assets/img/phone-display.png" alt="Smart Home">
+
+        <div class="configurator-inner">
+            <div class="config-block">
+                <div class="config-label">Step 1 — Color</div>
+                <div class="config-title">Phantom Black</div>
+                <div class="swatch-row">
+                    <div class="swatch swatch-black active" title="Phantom Black"></div>
+                    <div class="swatch swatch-graphite" title="Titanium Graphite"></div>
+                    <div class="swatch swatch-cream" title="Cream"></div>
+                    <div class="swatch swatch-blue" title="Cobalt Violet"></div>
+                    <div class="swatch swatch-green" title="Mint"></div>
                 </div>
-                <div class="application-content">
-                    <h3 class="application-title">Smart Home</h3>
-                    <p class="application-description">Unified security dashboard, energy optimization, routine automation for all connected devices.</p>
+                <p style="margin-top: 1.5rem; font-size: 0.8125rem; color: var(--text-muted);">5 finishes available. Galaxy ecosystem matched.</p>
+            </div>
+
+            <div class="config-block">
+                <div class="config-label">Step 2 — Storage</div>
+                <div class="config-title">Pick your capacity</div>
+                <div class="option-row">
+                    <div class="option-pill"><span class="opt-name">64 GB</span><span class="opt-price">$49.99</span></div>
+                    <div class="option-pill active"><span class="opt-name">128 GB <span style="color:var(--samsung-blue-glow); font-size:0.7rem; margin-left:6px;">RECOMMENDED</span></span><span class="opt-price">$69.99</span></div>
+                    <div class="option-pill"><span class="opt-name">256 GB</span><span class="opt-price">$89.99</span></div>
+                    <div class="option-pill"><span class="opt-name">512 GB</span><span class="opt-price">$99.99</span></div>
                 </div>
             </div>
-            <div class="application-card">
-                <div class="application-image">
-                    <img src="assets/img/phone-note.png" alt="Healthcare">
+
+            <div class="config-block">
+                <div class="config-label">Step 3 — Galaxy Care+</div>
+                <div class="config-title">Add protection</div>
+                <div class="option-row">
+                    <div class="option-pill"><span class="opt-name">No coverage</span><span class="opt-price">$0</span></div>
+                    <div class="option-pill active"><span class="opt-name">Galaxy Care+ (2 yrs)</span><span class="opt-price">+$49</span></div>
+                    <div class="option-pill"><span class="opt-name">Galaxy Care+ (3 yrs)</span><span class="opt-price">+$79</span></div>
                 </div>
-                <div class="application-content">
-                    <h3 class="application-title">Healthcare</h3>
-                    <p class="application-description">Fall detection, vital monitoring, elder care, mental health support, emergency response.</p>
-                </div>
-            </div>
-            <div class="application-card">
-                <div class="application-image">
-                    <img src="assets/img/phone-hero.png" alt="Transportation">
-                </div>
-                <div class="application-content">
-                    <h3 class="application-title">Transportation</h3>
-                    <p class="application-description">Vehicle control, fleet management, public transit coordination, emergency vehicle priority.</p>
-                </div>
-            </div>
-            <div class="application-card">
-                <div class="application-image">
-                    <img src="assets/img/phone-lowlight.png" alt="Agriculture">
-                </div>
-                <div class="application-content">
-                    <h3 class="application-title">Agriculture</h3>
-                    <p class="application-description">Soil monitoring, irrigation management, livestock tracking, supply chain optimization.</p>
+                <div class="total-summary">
+                    <span class="total-label">Estimated total</span>
+                    <span class="total-amount">$118.99</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Partnership Section -->
-<section class="partnership" id="partnership">
-    <div class="section-container">
-        <div class="section-header">
-            <h2 class="section-title">Partnership</h2>
-            <p class="section-subtitle">Samsung × Oroboros Labs</p>
+<section class="section" id="specs">
+    <div class="section-inner">
+        <div class="section-header center">
+            <div class="section-eyebrow">Tech Specs</div>
+            <h2 class="section-title">Engineered by Samsung.</h2>
         </div>
-        <div class="partnership-content">
-            <div class="partnership-logos">
-                <div class="partner-logo">
-                    <img src="assets/img/oroboros-logo.svg" alt="Oroboros Labs">
-                    <span class="partner-name">Oroboros Labs</span>
-                </div>
-                <div class="partnership-plus">+</div>
-                <div class="partner-logo">
-                    <div class="samsung-logo">SAMSUNG</div>
-                    <span class="partner-name">Samsung</span>
-                </div>
+
+        <div class="specs-table-wrap">
+            <div class="specs-tabs">
+                <div class="spec-tab active">Hardware</div>
+                <div class="spec-tab">AI Model</div>
+                <div class="spec-tab">Connectivity</div>
+                <div class="spec-tab">Power & Build</div>
             </div>
-            <div class="partnership-details">
-                <div class="partnership-column">
-                    <h3 class="partnership-column-title">Samsung Provides</h3>
-                    <ul class="partnership-list">
-                        <li>Returned Snapdragon supply chain</li>
-                        <li>Manufacturing & logistics</li>
-                        <li>ISOCELL HP2 sensors</li>
-                        <li>Retail distribution channels</li>
-                    </ul>
-                </div>
-                <div class="partnership-column">
-                    <h3 class="partnership-column-title">Oroboros Provides</h3>
-                    <ul class="partnership-list">
-                        <li>48³ Source Cube architecture</li>
-                        <li>Kaiju-ATU compressed model</li>
-                        <li>NOIR Security Nano</li>
-                        <li>Universal protocol translation</li>
-                    </ul>
-                </div>
-                <div class="partnership-column">
-                    <h3 class="partnership-column-title">Terms</h3>
-                    <ul class="partnership-list">
-                        <li>Revenue share: 60/40</li>
-                        <li>Joint patent portfolio</li>
-                        <li>Pilot: 30 days</li>
-                        <li>Mass production: 90 days</li>
-                        <li>Retail: $49-99</li>
-                        <li>Margin: 65-75%</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="cost-breakdown">
-                <h3 class="cost-title">Unit Cost Breakdown (1M Units)</h3>
-                <table class="cost-table">
-                    <thead>
-                        <tr>
-                            <th>Component</th>
-                            <th>Cost</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Processor (recycled)</td>
-                            <td>$5.00</td>
-                        </tr>
-                        <tr>
-                            <td>Camera module</td>
-                            <td>$3.00</td>
-                        </tr>
-                        <tr>
-                            <td>RAM (8GB LPDDR5)</td>
-                            <td>$2.00</td>
-                        </tr>
-                        <tr>
-                            <td>Storage (128GB UFS)</td>
-                            <td>$2.50</td>
-                        </tr>
-                        <tr>
-                            <td>PCB + components</td>
-                            <td>$1.50</td>
-                        </tr>
-                        <tr>
-                            <td>Housing + assembly</td>
-                            <td>$1.50</td>
-                        </tr>
-                        <tr>
-                            <td>Packaging</td>
-                            <td>$0.75</td>
-                        </tr>
-                        <tr class="total-row">
-                            <td><strong>TOTAL</strong></td>
-                            <td><strong>$16.25</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="specs-grid">
+                <div class="spec-line"><span class="label">Processor</span><span class="val">Snapdragon 8 Gen 3 for Galaxy</span></div>
+                <div class="spec-line"><span class="label">CPU</span><span class="val">8-core (1× X3 + 4× A715 + 3× A510)</span></div>
+                <div class="spec-line"><span class="label">GPU</span><span class="val">Adreno 740</span></div>
+                <div class="spec-line"><span class="label">NPU</span><span class="val">Hexagon Processor</span></div>
+                <div class="spec-line"><span class="label">RAM</span><span class="val">8 GB LPDDR5</span></div>
+                <div class="spec-line"><span class="label">Storage</span><span class="val">64 / 128 / 256 / 512 GB UFS</span></div>
+                <div class="spec-line"><span class="label">AI Architecture</span><span class="val">48³ Source Cube</span></div>
+                <div class="spec-line"><span class="label">Parameters</span><span class="val">800M (INT4)</span></div>
+                <div class="spec-line"><span class="label">Context Window</span><span class="val">32K tokens</span></div>
+                <div class="spec-line"><span class="label">Inference Speed</span><span class="val">50–100ms on-device</span></div>
+                <div class="spec-line"><span class="label">WiFi</span><span class="val">802.11be (WiFi 7)</span></div>
+                <div class="spec-line"><span class="label">Bluetooth</span><span class="val">6.0 with LE Audio</span></div>
+                <div class="spec-line"><span class="label">UWB</span><span class="val">IEEE 802.15.4z</span></div>
+                <div class="spec-line"><span class="label">SmartThings</span><span class="val">Matter, Zigbee, Z-Wave, IR, NFC</span></div>
+                <div class="spec-line"><span class="label">Power</span><span class="val">5W typical · 15W peak</span></div>
+                <div class="spec-line"><span class="label">Dimensions</span><span class="val">4 × 4 × 1.5 cm · &lt;50g</span></div>
+                <div class="spec-line"><span class="label">Camera</span><span class="val">200MP ISOCELL HP2 + IR</span></div>
+                <div class="spec-line"><span class="label">Security</span><span class="val">Samsung Knox Vault</span></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Whitepaper Section -->
-<section class="whitepaper" id="whitepaper">
-    <div class="section-container">
-        <div class="whitepaper-content">
-            <div class="whitepaper-text">
-                <h2 class="whitepaper-title">Complete Technical Documentation</h2>
-                <p class="whitepaper-description">Download the full ATU-1 whitepaper with detailed architecture, applications, and economic analysis.</p>
-                <a href="docs/ATU_WHITEPAPER.txt" class="btn-primary btn-large">Download Whitepaper</a>
+<section class="compare" id="compare">
+    <div class="section-inner">
+        <div class="section-header center">
+            <div class="section-eyebrow">Compare Galaxy AI Hub Lineup</div>
+            <h2 class="section-title">Pick the Galaxy that fits.</h2>
+        </div>
+        <div class="compare-grid">
+            <div class="compare-card">
+                <div class="compare-name">Galaxy ATU-Lite</div>
+                <p class="compare-tagline">Single-room AI</p>
+                <div class="compare-price">$29.99</div>
+                <ul class="compare-list">
+                    <li>400M parameters</li>
+                    <li>WiFi 6 · BT 5.3</li>
+                    <li>SmartThings essentials</li>
+                    <li>3W typical power</li>
+                </ul>
+                <span class="compare-soon">Coming Soon</span>
             </div>
-            <div class="whitepaper-icon">
-                <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-                    <rect x="20" y="10" width="80" height="100" rx="4" stroke="#1428a0" stroke-width="2" fill="none"/>
-                    <path d="M35 35H85M35 50H85M35 65H65" stroke="#1428a0" stroke-width="2"/>
-                </svg>
+            <div class="compare-card featured">
+                <div class="compare-badge">★ Most Popular</div>
+                <div class="compare-name">Galaxy ATU-1</div>
+                <p class="compare-tagline">Whole-home Galaxy AI</p>
+                <div class="compare-price">$49.99</div>
+                <ul class="compare-list">
+                    <li><strong style="color:#fff">800M parameters · 48³</strong></li>
+                    <li>WiFi 7 · BT 6.0 · UWB</li>
+                    <li>200MP ISOCELL HP2</li>
+                    <li>5W typical power</li>
+                    <li>Knox Vault security</li>
+                </ul>
+                <a href="#configurator" class="btn btn-fill" style="width:100%;">Pre-order</a>
+            </div>
+            <div class="compare-card">
+                <div class="compare-name">Galaxy ATU-Pro</div>
+                <p class="compare-tagline">Estate-grade intelligence</p>
+                <div class="compare-price">$149.99</div>
+                <ul class="compare-list">
+                    <li>2.4B parameters · 64³</li>
+                    <li>WiFi 7 · BT 6.0 · UWB</li>
+                    <li>Dual ISOCELL sensors</li>
+                    <li>25W peak power</li>
+                </ul>
+                <span class="compare-soon">Coming Soon</span>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Contact Section -->
-<section class="contact" id="contact">
-    <div class="section-container">
-        <div class="contact-content">
-            <h2 class="contact-title">Partnership Inquiries</h2>
-            <p class="contact-description">Interested in partnering with us? Get in touch.</p>
-            <a href="mailto:oroboroslabs.ai@gmail.com" class="btn-primary btn-large">oroboroslabs.ai@gmail.com</a>
+<section class="whitepaper-section" id="whitepaper">
+    <div class="whitepaper-inner">
+        <div>
+            <div class="section-eyebrow">Technical Whitepaper</div>
+            <h2 class="section-title">The full <span class="light">Galaxy ATU-1</span> blueprint.</h2>
+            <p class="section-subtitle" style="margin-bottom: 2rem;">Architecture, applications, supply chain, and economic analysis. Everything Samsung's Galaxy ATU-1 stands on, in one document.</p>
+            <div class="cta-btn-row" style="justify-content: flex-start;">
+                <a href="docs/ATU_WHITEPAPER.txt" class="btn btn-fill btn-lg">Download Whitepaper</a>
+                <a href="docs/ATU_WHITEPAPER.txt" target="_blank" class="btn btn-ghost btn-lg">Read Online</a>
+            </div>
+        </div>
+
+        <div class="whitepaper-doc">
+            <div class="whitepaper-doc-header">
+                <span class="whitepaper-doc-tag">Samsung · Confidential Press Kit</span>
+                <span class="whitepaper-doc-tag">v1.0</span>
+            </div>
+            <h3 class="whitepaper-doc-title">AI Tactical Unit (ATU-1)</h3>
+            <p class="whitepaper-doc-sub">A Samsung Galaxy AI Hardware Presentation</p>
+            <ul class="whitepaper-toc">
+                <li><span>1. Executive Summary</span><span>p.1</span></li>
+                <li><span>2. 48³ Source Cube Architecture</span><span>p.4</span></li>
+                <li><span>3. Snapdragon Supply Chain</span><span>p.9</span></li>
+                <li><span>4. ISOCELL HP2 Camera Stack</span><span>p.14</span></li>
+                <li><span>5. SmartThings Integration</span><span>p.19</span></li>
+                <li><span>6. Knox Vault Security Model</span><span>p.24</span></li>
+                <li><span>7. Unit Economics & BOM</span><span>p.28</span></li>
+                <li><span>8. Roadmap — ATU-Lite / Pro</span><span>p.33</span></li>
+            </ul>
+            <div class="whitepaper-meta">
+                <div class="whitepaper-meta-item">
+                    <span class="key">Format</span>
+                    <span class="val">.txt</span>
+                </div>
+                <div class="whitepaper-meta-item">
+                    <span class="key">Released</span>
+                    <span class="val">April 2026</span>
+                </div>
+                <div class="whitepaper-meta-item">
+                    <span class="key">Category</span>
+                    <span class="val">Galaxy AI Hub</span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Footer -->
+<section class="cta-banner" id="support">
+    <div class="section-inner">
+        <h2 class="cta-title">The Galaxy AI puck. <strong>Yours from $49.99.</strong></h2>
+        <p class="cta-sub">Pre-order today. Ships April 2026. Free SmartThings Hub bundle while supplies last.</p>
+        <div class="cta-btn-row">
+            <a href="#configurator" class="btn btn-fill btn-lg">Pre-order Now</a>
+            <a href="docs/ATU_WHITEPAPER.txt" class="btn btn-outline btn-lg">Download Whitepaper</a>
+        </div>
+    </div>
+</section>
+
 <footer class="site-footer">
-    <div class="footer-container">
-        <div class="footer-top">
-            <div class="footer-brand">
-                <img src="assets/img/oroboros-logo.svg" alt="Oroboros Labs" class="footer-logo">
-                <p class="footer-tagline">Universal intelligence for every home.</p>
+    <div class="footer-inner">
+        <div class="footer-cols">
+            <div class="footer-col">
+                <div class="footer-col-title">Product</div>
+                <a href="#overview">Overview</a>
+                <a href="#highlights">Highlights</a>
+                <a href="#camera">Camera</a>
+                <a href="#specs">Tech Specs</a>
             </div>
-            <div class="footer-links">
-                <div class="footer-link-group">
-                    <h4 class="footer-link-title">Product</h4>
-                    <a href="#overview" class="footer-link">Overview</a>
-                    <a href="#features" class="footer-link">Features</a>
-                    <a href="#specs" class="footer-link">Specifications</a>
-                </div>
-                <div class="footer-link-group">
-                    <h4 class="footer-link-title">Resources</h4>
-                    <a href="#applications" class="footer-link">Applications</a>
-                    <a href="#whitepaper" class="footer-link">Whitepaper</a>
-                    <a href="#partnership" class="footer-link">Partnership</a>
-                </div>
-                <div class="footer-link-group">
-                    <h4 class="footer-link-title">Related Projects</h4>
-                    <a href="https://oroboroslabs-ai.github.io/architect-suit/" class="footer-link">Architect Suit</a>
-                    <a href="https://oroboroslab.github.io/project-2050-blueprint/" class="footer-link">Project 2050</a>
-                    <a href="https://oroboros.ai" class="footer-link">Oroboros.ai</a>
-                </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Buy</div>
+                <a href="#configurator">Configure</a>
+                <a href="#compare">Compare Lineup</a>
+                <a href="#support">Pre-order</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Galaxy AI Hub</div>
+                <a href="#compare">Galaxy ATU-Lite</a>
+                <a href="#overview">Galaxy ATU-1</a>
+                <a href="#compare">Galaxy ATU-Pro</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Resources</div>
+                <a href="#whitepaper">Whitepaper Overview</a>
+                <a href="docs/ATU_WHITEPAPER.txt">Download Whitepaper</a>
+                <a href="#specs">Full Specifications</a>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <div class="footer-left">
-                <span class="footer-copyright">© 2026 Oroboros Labs. All rights reserved.</span>
-                <span class="footer-license">Licensed under the Oroboros Architect License (PolyForm Noncommercial 1.0.0)</span>
-            </div>
-            <div class="footer-right">
-                <span class="footer-version">ATU-1 v1.0 — April 25, 2026</span>
-            </div>
+            <p class="footer-copyright">
+                Copyright © 1995-2026 Samsung. All rights reserved.<br>
+                Samsung, Galaxy, SmartThings, ISOCELL, and Knox are trademarks of Samsung Electronics Co., Ltd.
+            </p>
+            <span class="footer-version">Galaxy ATU-1 v1.0 — April 2026</span>
         </div>
     </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script>
+    document.querySelectorAll('.spec-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.spec-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+        });
+    });
+
+    document.querySelectorAll('.swatch').forEach(s => {
+        s.addEventListener('click', () => {
+            document.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
+            s.classList.add('active');
+            const name = s.getAttribute('title');
+            const titleEl = s.closest('.config-block').querySelector('.config-title');
+            if (name && titleEl) titleEl.textContent = name;
+        });
+    });
+
+    document.querySelectorAll('.config-block').forEach(block => {
+        block.querySelectorAll('.option-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                block.querySelectorAll('.option-pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
