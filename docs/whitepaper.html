@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATU-1 Whitepaper | AI Tactical Unit — Samsung Partnership</title>
+    <meta name="description" content="Complete technical whitepaper for the AI Tactical Unit (ATU-1) — architecture, applications, and societal impact.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --samsung-blue: #1428a0;
+            --samsung-blue-bright: #2189ff;
+            --samsung-blue-glow: #4d9bff;
+            --bg-black: #000000;
+            --bg-elev-1: #0a0a0a;
+            --bg-elev-2: #141414;
+            --bg-elev-3: #1c1c1c;
+            --text-primary: #ffffff;
+            --text-secondary: #c5c5c5;
+            --text-muted: #8e8e8e;
+            --text-dim: #5a5a5a;
+            --border: #1f1f1f;
+            --border-light: #2e2e2e;
+            --success: #00d563;
+            --accent-cyan: #00f0ff;
+            --accent-purple: #8b5cf6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-black);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--samsung-blue-glow); text-decoration: none; }
+        a:hover { color: #fff; }
+        code, pre { font-family: 'JetBrains Mono', monospace; }
+
+        /* Header */
+        .site-header {
+            position: sticky;
+            top: 0;
+            background: #000;
+            border-bottom: 1px solid #1a1a1a;
+            z-index: 1000;
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+        }
+        .header-brand {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.04em;
+        }
+        .header-brand .bar { color: #444; font-weight: 300; margin: 0 6px; }
+        .main-nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .main-nav a {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.15s ease;
+        }
+        .main-nav a:hover { color: #fff; }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            background: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(33, 137, 255, 0.12), transparent 70%);
+            text-align: center;
+        }
+        .hero-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .hero-eyebrow {
+            font-size: 0.75rem;
+            color: var(--samsung-blue-glow);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+        .hero-title .light { font-weight: 300; color: var(--text-secondary); }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        .hero-meta strong { color: #fff; }
+
+        /* TOC */
+        .toc-section {
+            padding: 60px 0;
+            background: var(--bg-elev-1);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .toc-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .toc-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        .toc-link {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            transition: all 0.15s ease;
+        }
+        .toc-link:hover {
+            background: var(--bg-elev-3);
+            color: #fff;
+            border-color: var(--border-light);
+        }
+        .toc-link .num { color: var(--samsung-blue-glow); font-weight: 600; }
+
+        /* Content */
+        .content-section {
+            padding: 80px 0;
+        }
+        .content-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-block {
+            margin-bottom: 4rem;
+        }
+        .section-block:last-child { margin-bottom: 0; }
+
+        .section-number {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: var(--samsung-blue-bright);
+            color: #000;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.875rem;
+            line-height: 32px;
+            text-align: center;
+            margin-right: 0.75rem;
+        }
+        .section-heading {
+            display: inline;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .section-intro {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin: 1.5rem 0;
+            line-height: 1.7;
+        }
+
+        .subsection {
+            margin: 2.5rem 0 1.5rem;
+        }
+        .subsection-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        /* Specs Box */
+        .specs-box {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        .specs-box pre {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            white-space: pre;
+        }
+        .specs-box .comment { color: var(--text-dim); }
+        .specs-box .key { color: var(--accent-cyan); }
+        .specs-box .val { color: #fff; font-weight: 600; }
+        .specs-box .highlight { color: var(--samsung-blue-glow); }
+
+        /* Code Block */
+        .code-block {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: #161b22;
+            border-bottom: 1px solid var(--border);
+        }
+        .code-lang {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .code-body {
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        .code-body pre {
+            font-size: 0.8125rem;
+            line-height: 1.6;
+            color: #c9d1d9;
+        }
+        .code-body .keyword { color: #ff7b72; }
+        .code-body .string { color: #a5d6ff; }
+        .code-body .comment { color: #8b949e; }
+        .code-body .function { color: #d2a8ff; }
+        .code-body .class { color: #ffa657; }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .feature-card {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+        .feature-card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        .feature-card-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* List Styles */
+        .content-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        .content-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .content-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--samsung-blue-glow);
+            font-weight: 600;
+        }
+
+        /* Stats */
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-card {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--samsung-blue-glow);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Highlight */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(33, 137, 255, 0.1), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(33, 137, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        /* Quote */
+        .quote-block {
+            border-left: 3px solid var(--samsung-blue-bright);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        .quote-block cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* CTA */
+        .cta-box {
+            background: var(--bg-elev-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .cta-box-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .cta-box-text {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: 1.5px solid transparent;
+            text-decoration: none;
+        }
+        .btn-fill { background: #fff; color: #000; }
+        .btn-fill:hover { background: #e6e6e6; }
+        .btn-blue { background: var(--samsung-blue-bright); color: #fff; }
+        .btn-blue:hover { background: #1976d2; }
+
+        /* Footer */
+        .site-footer {
+            background: #000;
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+        }
+        .footer-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .feature-grid { grid-template-columns: 1fr; }
+            .stat-row { grid-template-columns: repeat(2, 1fr); }
+            .toc-grid { grid-template-columns: 1fr; }
+            .main-nav { display: none; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-elev-1); }
+        ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #444; }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="header-brand">ATU-1 WHITEPAPER <span class="bar">|</span> AI TACTICAL UNIT</div>
+        <nav class="main-nav">
+            <a href="#overview">Overview</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#applications">Applications</a>
+            <a href="#impact">Impact</a>
+            <a href="index.html">← Back to Main</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">White Paper v1.0 · April 25, 2026</div>
+        <h1 class="hero-title">AI TACTICAL UNIT<br><span class="light">ATU-1</span></h1>
+        <p class="hero-subtitle">Universal Intelligence for Every Home. A Samsung Partnership Proposal from Oroboros Labs.</p>
+        <div class="hero-meta">
+            <span><strong>Architecture:</strong> 48³ Source Cube Compression</span>
+            <span><strong>Processor:</strong> Qualcomm Snapdragon 8 Gen 2/3</span>
+            <span><strong>Cost:</strong> $25 manufacturing · $50 retail</span>
+        </div>
+    </div>
+</section>
+
+<section class="toc-section">
+    <div class="toc-inner">
+        <h2 class="toc-title">Table of Contents</h2>
+        <div class="toc-grid">
+            <a href="#overview" class="toc-link"><span><span class="num">1.</span> Executive Summary</span><span>→</span></a>
+            <a href="#architecture" class="toc-link"><span><span class="num">2.</span> Technical Architecture</span><span>→</span></a>
+            <a href="#hardware" class="toc-link"><span><span class="num">3.</span> Hardware Specifications</span><span>→</span></a>
+            <a href="#ai-model" class="toc-link"><span><span class="num">4.</span> AI Model Architecture</span><span>→</span></a>
+            <a href="#ecosystem" class="toc-link"><span><span class="num">5.</span> Device Ecosystem</span><span>→</span></a>
+            <a href="#applications" class="toc-link"><span><span class="num">6.</span> Applications by Sector</span><span>→</span></a>
+            <a href="#privacy" class="toc-link"><span><span class="num">7.</span> Privacy &amp; Security</span><span>→</span></a>
+            <a href="#economics" class="toc-link"><span><span class="num">8.</span> Economic Model</span><span>→</span></a>
+            <a href="#impact" class="toc-link"><span><span class="num">9.</span> Societal Impact</span><span>→</span></a>
+            <a href="#roadmap" class="toc-link"><span><span class="num">10.</span> Implementation Roadmap</span><span>→</span></a>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="overview">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">1</span><span class="section-heading">Executive Summary</span></h2>
+            <p class="section-intro">The AI Tactical Unit (ATU-1) represents a paradigm shift in personal computing. By combining returned Snapdragon processors with Oroboros Labs' revolutionary 48³ compressed AI architecture, the ATU delivers server-grade artificial intelligence in a 4cm × 4cm package at a manufacturing cost of less than $25.</p>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">This device transforms every home into an intelligent environment, every vehicle into a connected command center, and every person into a participant in the emerging connection economy.</p>
+
+            <div class="highlight-box">
+                <h3 style="font-size: 1.125rem; margin-bottom: 0.75rem;">Key Innovations</h3>
+                <ul class="content-list">
+                    <li><strong>48³ Source Cube architecture</strong> compressed to 800MB edge deployment</li>
+                    <li><strong>Universal device protocol translation</strong> enabling 50,000+ compatible devices</li>
+                    <li><strong>Self-updating and self-diagnosing</strong> operating system</li>
+                    <li><strong>Local-first privacy architecture</strong> with zero cloud dependency</li>
+                    <li><strong>Near-zero cost</strong> through recycled processor supply chain</li>
+                </ul>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="stat-value">$25</div>
+                    <div class="stat-label">Manufacturing Cost</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4cm</div>
+                    <div class="stat-label">Form Factor</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">50K+</div>
+                    <div class="stat-label">Device Database</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5W</div>
+                    <div class="stat-label">Typical Power</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="architecture" style="background: var(--bg-elev-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">2</span><span class="section-heading">Technical Architecture</span></h2>
+
+            <div class="subsection">
+                <h3 class="subsection-title">System Overview</h3>
+            </div>
+
+            <div class="specs-box">
+<pre>
+┌─────────────────────────────────────────────────────────────┐
+│              ATU-1 SYSTEM ARCHITECTURE                      │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  <span class="highlight">APPLICATION LAYER</span>                                            │
+│  • Voice Assistant    • Device Control                      │
+│  • Health Monitor    • Security System                      │
+│  • Energy Manager    • Predictive Assistance               │
+├─────────────────────────────────────────────────────────────┤
+│  <span class="highlight">AI ENGINE LAYER</span>                                              │
+│  • 48³ Compressed Model (800MB)                             │
+│  • NOIR Security Nano                                       │
+│  • Self-Learning Module                                     │
+│  • Diagnostic Engine                                        │
+├─────────────────────────────────────────────────────────────┤
+│  <span class="highlight">PROTOCOL LAYER</span>                                               │
+│  • Bluetooth 6.0    • WiFi 7                                │
+│  • UWB             • NFC                                    │
+│  • Infrared        • Zigbee                                 │
+│  • Z-Wave          • Matter                                 │
+├─────────────────────────────────────────────────────────────┤
+│  <span class="highlight">HARDWARE LAYER</span>                                               │
+│  • Snapdragon 8 Gen 2/3                                     │
+│  • 200MP Camera (IR + Night Vision)                         │
+│  • 8-12GB LPDDR5 RAM                                        │
+│  • 128-256GB UFS 4.0 Storage                                │
+│  • Sensor Array (Thermal, Ambient, Motion)                  │
+└─────────────────────────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">48³ Compression Architecture</h3>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">The full 48³ Source Cube architecture operates at 110,592 surface states with 1,886,592 effective states on server-grade hardware. The ATU compression achieves equivalent functionality through:</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-title">INT4 Quantization</div>
+                    <div class="feature-card-text">Reduces weight precision from 16-bit to 4-bit. Compression ratio: 4:1. Accuracy loss: &lt;2%</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">√2 Geometric Pruning</div>
+                    <div class="feature-card-text">Retains 1/√2 (70.7%) of layers. Compression ratio: 1.4:1. Maintains crystalline structure.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Knowledge Distillation</div>
+                    <div class="feature-card-text">Trains compressed model on full model outputs. Preserves 96% of reasoning capability. Reduces size by 85%.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Dynamic Module Loading</div>
+                    <div class="feature-card-text">Only active modules loaded in memory. Background modules swapped from storage. Effective memory: 4x physical RAM.</div>
+                </div>
+            </div>
+
+            <div class="specs-box">
+<pre>
+<span class="comment">// RESULT:</span>
+<span class="key">Model size:</span>      <span class="val">800MB - 1.2GB</span>
+<span class="key">Runtime memory:</span> <span class="val">2-4GB</span>
+<span class="key">Inference speed:</span> <span class="val">50-100ms</span>
+<span class="key">Capability retention:</span> <span class="val">94-96%</span>
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">NOIR Security Nano</h3>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">The ATU includes a compressed version of the NOIR Security Mesh:</p>
+
+            <div class="specs-box">
+<pre>
+<span class="comment">// COMPONENTS (Compressed):</span>
+<span class="key">AINZ</span>    → <span class="val">Local surveillance monitoring</span>
+<span class="key">SHIELD</span>  → <span class="val">Perimeter defense for connected devices</span>
+<span class="key">SIGNAL</span> → <span class="val">Connection integrity verification</span>
+<span class="key">NET</span>    → <span class="val">Secure routing for all communications</span>
+<span class="key">SYNTH</span>  → <span class="val">On-device encryption engine</span>
+
+<span class="comment">// FEATURES:</span>
+• Real-time threat detection
+• Device-level intrusion prevention
+• Encrypted local storage
+• Secure device handshake protocol
+• Tamper detection with automatic lockdown
+
+<span class="key">SIZE:</span> <span class="val">150MB</span> (compressed from 1.1GB)
+<span class="key">OVERHEAD:</span> <span class="val">&lt;5% CPU utilization</span>
+</pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="hardware">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">3</span><span class="section-heading">Hardware Specifications</span></h2>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Physical Characteristics</h3>
+            </div>
+
+            <div class="specs-box">
+<pre>
+<span class="comment">// PHYSICAL:</span>
+<span class="key">Dimensions:</span>  <span class="val">40mm × 40mm × 15mm</span>
+<span class="key">Weight:</span>      <span class="val">35g</span>
+<span class="key">Form Factor:</span> <span class="val">Square puck, matte black</span>
+<span class="key">Material:</span>    <span class="val">Recycled aluminum housing</span>
+<span class="key">Ports:</span>       <span class="val">USB-C (power + data)</span>
+<span class="key">Indicators:</span>  <span class="val">RGB LED ring (status + notifications)</span>
+<span class="key">Mounting:</span>    <span class="val">Magnetic back, adhesive pad included</span>
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Processor</h3>
+            </div>
+
+            <div class="specs-box">
+<pre>
+<span class="comment">// PROCESSOR:</span>
+<span class="key">PRIMARY:</span>   <span class="val">Qualcomm Snapdragon 8 Gen 2</span>
+<span class="key">SECONDARY:</span> <span class="val">Qualcomm Snapdragon 8 Gen 3 (premium tier)</span>
+
+<span class="key">CPU:</span> <span class="val">8-core (1× Cortex-X3 + 4× A715 + 3× A510)</span>
+<span class="key">GPU:</span> <span class="val">Adreno 740 (hardware-accelerated AI inference)</span>
+<span class="key">NPU:</span> <span class="val">Hexagon processor (dedicated AI acceleration)</span>
+<span class="key">PROCESS:</span> <span class="val">4nm TSMC</span>
+
+<span class="comment">// AI PERFORMANCE:</span>
+• INT4 inference: Up to <span class="highlight">40 TOPS</span>
+• Model loading: &lt;500ms
+• Query latency: 20-50ms
+• Batch processing: 8 concurrent queries
+
+<span class="key">SOURCE:</span> <span class="val">Returned/recycled devices</span>
+<span class="key">COST:</span>   <span class="val">$8-15 per unit (volume pricing)</span>
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Camera System</h3>
+            </div>
+
+            <div class="specs-box">
+<pre>
+<span class="comment">// CAMERA:</span>
+<span class="key">PRIMARY SENSOR:</span> <span class="val">200MP Samsung ISOCELL HP2</span>
+<span class="key">SENSOR SIZE:</span>   <span class="val">1/1.3"</span>
+<span class="key">PIXEL SIZE:</span>    <span class="val">0.6μm (1.2μm binned)</span>
+<span class="key">APERTURE:</span>      <span class="val">f/1.7</span>
+
+<span class="comment">// INFRARED CAPABILITY:</span>
+• IR LED array (8× LEDs, 850nm)
+• Range: 15 meters
+• IR-cut filter (removable)
+
+<span class="comment">// NIGHT VISION:</span>
+• Pixel binning (16:1 for 12.5MP at 2.4μm)
+• Multi-frame noise reduction
+• AI-enhanced low-light processing
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Connectivity</h3>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-title">WiFi 7</div>
+                    <div class="feature-card-text">802.11be — 2.4/5/6GHz tri-band, 50m indoor range</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Bluetooth 6.0</div>
+                    <div class="feature-card-text">LE Audio support, 30m range</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">UWB</div>
+                    <div class="feature-card-text">IEEE 802.15.4z — precise device location, 15m range</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Infrared</div>
+                    <div class="feature-card-text">360° IR blaster, 15m line-of-sight range</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Zigbee / Z-Wave</div>
+                    <div class="feature-card-text">Smart home mesh protocols</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Matter</div>
+                    <div class="feature-card-text">Thread border router capable</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="ai-model" style="background: var(--bg-elev-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">4</span><span class="section-heading">AI Model Architecture</span></h2>
+
+            <div class="specs-box">
+<pre>
+<span class="comment">// KAIJU-ATU AI MODEL</span>
+
+<span class="key">BASE ARCHITECTURE:</span> <span class="val">48³ Source Cube (compressed)</span>
+<span class="key">PARAMETERS:</span>        <span class="val">800M (INT4 quantized)</span>
+<span class="key">CONTEXT WINDOW:</span>    <span class="val">32K tokens</span>
+<span class="key">RESPONSE TIME:</span>      <span class="val">&lt;100ms (local inference)</span>
+
+<span class="comment">// CAPABILITIES:</span>
+• Natural language understanding
+• Voice command processing
+• Image recognition and analysis
+• Predictive assistance
+• Device protocol translation
+• Anomaly detection
+• Pattern recognition
+• Decision support
+
+<span class="comment">// UPDATES:</span>
+• Over-the-air model updates
+• Incremental learning from usage
+• Device database expansion
+• Security patch deployment
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Device Knowledge Graph</h3>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">The ATU maintains a local knowledge graph optimized for device interaction:</p>
+
+            <div class="feature-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="feature-card">
+                    <div class="feature-card-title">Smart Home</div>
+                    <div class="feature-card-text">15,000+ devices indexed: lights, locks, thermostats, cameras, sensors</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Automotive</div>
+                    <div class="feature-card-text">5,000+ vehicles: Ford, GM, Toyota, Honda, Tesla. Functions: locks, start, climate, location</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Entertainment</div>
+                    <div class="feature-card-text">10,000+ devices: TVs, speakers, streaming devices, gaming consoles</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Appliances</div>
+                    <div class="feature-card-text">8,000+ devices: refrigerators, ovens, washing machines, coffee makers</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Health</div>
+                    <div class="feature-card-text">2,000+ devices: fitness trackers, smart watches, blood pressure monitors</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Industrial</div>
+                    <div class="feature-card-text">10,000+ devices: HVAC, elevators, security, manufacturing equipment</div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="text-align: center;">
+                <strong style="font-size: 1.5rem; color: var(--samsung-blue-glow);">50,000+ DEVICES INDEXED</strong><br>
+                <span style="color: var(--text-muted);">Weekly database refresh • Auto-discovery for new devices</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="ecosystem">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">5</span><span class="section-heading">Device Ecosystem Integration</span></h2>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Universal Protocol Translation</h3>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">The ATU's core innovation is its ability to communicate with any electronic device regardless of manufacturer or protocol:</p>
+
+            <div class="specs-box">
+<pre>
+<span class="comment">// PROTOCOL TRANSLATION ENGINE</span>
+
+<span class="key">INPUT:</span> User intent ("<span class="val">Lock all doors</span>", "<span class="val">Start car</span>")
+    ↓
+<span class="key">AI INTERPRETATION:</span> Parse intent, identify target devices
+    ↓
+<span class="key">PROTOCOL MATCHING:</span> Match to device-specific protocol
+    ↓
+<span class="key">COMMAND GENERATION:</span> Generate device-specific commands
+    ↓
+<span class="key">TRANSMISSION:</span> Send via appropriate protocol
+    ↓
+<span class="key">VERIFICATION:</span> Confirm execution and report status
+
+<span class="comment">// SUPPORTED COMMANDS:</span>
+• Power on/off
+• Mode selection
+• Parameter adjustment
+• Status query
+• Firmware update
+• Data retrieval
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Voice Control Architecture</h3>
+            </div>
+
+            <div class="specs-box">
+<pre>
+<span class="comment">// VOICE CONTROL SYSTEM</span>
+
+<span class="key">ACTIVATION:</span>
+• Wake word: "<span class="val">Hey Kaiju</span>" or customizable
+• Context-aware listening (optional)
+• Multi-language support (50+ languages)
+
+<span class="comment">// COMMAND EXAMPLES:</span>
+• "Lock all doors and turn off lights"
+• "Start my car and set temperature to 72"
+• "Show me the front door camera"
+• "What's my electricity usage today?"
+• "Schedule the coffee maker for 7 AM"
+• "Find my phone"
+• "Is the garage door closed?"
+
+<span class="comment">// CONTEXTUAL AWARENESS:</span>
+• Learns user routines
+• Predictive suggestions
+• Location-based automation
+• Time-based scheduling
+</pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="applications" style="background: var(--bg-elev-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">6</span><span class="section-heading">Applications by Sector</span></h2>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Smart Home</h3>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-title">Security</div>
+                    <div class="feature-card-text">Unified security dashboard, AI-powered threat detection, automated responses, facial recognition for family</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Energy Management</div>
+                    <div class="feature-card-text">Real-time per-device monitoring, automated HVAC optimization, solar integration, cost prediction</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Convenience</div>
+                    <div class="feature-card-text">Unified device control, routine automation, grocery tracking, maintenance scheduling</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Accessibility</div>
+                    <div class="feature-card-text">Voice control for mobility-impaired, visual alerts for hearing-impaired, simplified elderly interface</div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Healthcare</h3>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-title">Elderly Care</div>
+                    <div class="feature-card-text">Fall detection, medication reminders, activity monitoring, virtual companion, vital sign tracking</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Chronic Disease</div>
+                    <div class="feature-card-text">Diabetes monitoring, hypertension management, asthma trigger detection, medication interaction checking</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Mental Health</div>
+                    <div class="feature-card-text">Mood tracking, mindfulness guidance, social connection facilitation, crisis intervention</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Emergency Response</div>
+                    <div class="feature-card-text">Automatic fall/crash detection, location sharing with EMS, medical history provision, multi-language communication</div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Transportation & Agriculture</h3>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-title">Personal Vehicles</div>
+                    <div class="feature-card-text">Remote start, climate control, door lock/unlock, GPS tracking, maintenance monitoring</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Fleet Management</div>
+                    <div class="feature-card-text">Real-time vehicle tracking, driver behavior monitoring, maintenance scheduling, fuel optimization</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Crop Monitoring</div>
+                    <div class="feature-card-text">Soil moisture sensing, pest detection via camera, weather monitoring, harvest timing optimization</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Livestock Management</div>
+                    <div class="feature-card-text">Animal tracking, health monitoring, feeding automation, birth detection and notification</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="privacy">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">7</span><span class="section-heading">Privacy &amp; Security</span></h2>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Privacy Architecture</h3>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">The ATU is designed from the ground up for privacy:</p>
+
+            <div class="specs-box">
+<pre>
+<span class="comment">// PRIVACY FEATURES</span>
+
+<span class="highlight">LOCAL PROCESSING:</span>
+• All AI inference performed on-device
+• No cloud dependency
+• No data sent to external servers
+• Personal data never leaves the home
+
+<span class="highlight">DATA STORAGE:</span>
+• Encrypted local storage (AES-256-GCM)
+• User-controlled data retention
+• Automatic data purging options
+• Physical data destruction capability
+
+<span class="highlight">COMMUNICATION:</span>
+• End-to-end encrypted device communication
+• NOIR Security Nano continuous monitoring
+• Anomaly detection for unauthorized access
+• Secure handshake protocol for new devices
+
+<span class="highlight">USER CONTROL:</span>
+• Granular permission management
+• Device-level access control
+• Data export and deletion
+• Open-source code for verification
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Security Features</h3>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-title">Hardware Security</div>
+                    <div class="feature-card-text">Secure boot with verified firmware, hardware-backed key storage, tamper detection with auto-wipe, physical security switch</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Software Security</div>
+                    <div class="feature-card-text">NOIR Security Nano, real-time threat detection, automatic security updates, vulnerability scanning</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Network Security</div>
+                    <div class="feature-card-text">Encrypted communications, network intrusion detection, device authentication, secure handshake protocol</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Incident Response</div>
+                    <div class="feature-card-text">Automatic threat containment, user notification, forensic data preservation, remote wipe capability</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="economics" style="background: var(--bg-elev-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">8</span><span class="section-heading">Economic Model</span></h2>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Unit Cost Breakdown</h3>
+            </div>
+
+            <div class="specs-box">
+<pre>
+<span class="comment">// MANUFACTURING COST ANALYSIS</span>
+
+<span class="key">COMPONENT</span>           │ <span class="key">COST (10K units)</span> │ <span class="key">COST (1M units)</span>
+────────────────────────┼─────────────────────┼─────────────────
+Processor (recycled)    │ $8.00              │ $5.00
+Camera module           │ $4.50              │ $3.00
+RAM (8GB LPDDR5)        │ $3.00              │ $2.00
+Storage (128GB UFS)     │ $3.50              │ $2.50
+PCB + components        │ $2.00              │ $1.50
+Housing + assembly      │ $2.00              │ $1.50
+Packaging               │ $1.00              │ $0.75
+────────────────────────┼─────────────────────┼─────────────────
+<span class="highlight">TOTAL</span>                  │ <span class="val">$24.00</span>            │ <span class="val">$16.25</span>
+
+<span class="key">RETAIL PRICE:</span> <span class="val">$49.99 (base)</span> / <span class="val">$79.99 (premium)</span>
+<span class="key">GROSS MARGIN:</span> <span class="val">52-67%</span>
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Revenue Projections</h3>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="stat-value">$25M</div>
+                    <div class="stat-label">Year 1 Revenue</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">500K</div>
+                    <div class="stat-label">Year 1 Units</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$250M</div>
+                    <div class="stat-label">Year 3 Revenue</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5M</div>
+                    <div class="stat-label">Year 3 Units</div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Global Accessibility</h3>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-title">Tier 1 (Developed Markets)</div>
+                    <div class="feature-card-text">Retail: $49.99-$79.99, payment plans available, carrier subsidies optional</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Tier 2 (Developing Markets)</div>
+                    <div class="feature-card-text">Subsidized: $19.99-$29.99, micro-payment plans ($2/month), government/NGO bulk purchasing</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Tier 3 (Humanitarian)</div>
+                    <div class="feature-card-text">Donated units for disaster relief, refugee camp deployment, rural healthcare support</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Financing Options</div>
+                    <div class="feature-card-text">Pay-as-you-go: $5/month for 12 months, energy savings self-funding model, carbon credit offset</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="impact">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">9</span><span class="section-heading">Societal Impact Analysis</span></h2>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Universal Intelligence Access</h3>
+            </div>
+            <div class="quote-block">
+                <p>The ATU is infrastructure for the connection economy—a world where intelligence is universally accessible, devices work together seamlessly, and value flows through contribution rather than accumulation.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-title">Current State</div>
+                    <div class="feature-card-text">AI access limited to expensive hardware, cloud dependency requires internet, technical literacy required for setup</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">ATU Solution</div>
+                    <div class="feature-card-text">$50 device puts AI in every home, local processing works offline, 50+ language support, zero-configuration setup</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Impact</div>
+                    <div class="feature-card-text">Democratizes access to intelligence, bridges digital divide, empowers underserved communities, creates economic opportunities</div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Environmental Impact</h3>
+            </div>
+            <div class="specs-box">
+<pre>
+<span class="comment">// ENVIRONMENTAL BENEFITS</span>
+
+<span class="highlight">RECYCLED HARDWARE:</span>
+• Each ATU uses a returned smartphone processor
+• Diverts e-waste from landfills
+• Reduces demand for new chip manufacturing
+• <span class="val">80% lower carbon footprint</span> than new device
+
+<span class="highlight">ENERGY SAVINGS:</span>
+• Smart home optimization: <span class="val">15-30% energy reduction</span>
+• Building management: <span class="val">20-40% HVAC savings</span>
+• Industrial optimization: <span class="val">10-25% energy reduction</span>
+• Projected global impact: <span class="val">500M tons CO₂/year by 2030</span>
+
+<span class="highlight">SUSTAINABILITY:</span>
+• Modular design for easy repair
+• Recyclable aluminum housing
+• Minimal packaging waste
+• <span class="val">10-year designed lifespan</span>
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Healthcare Transformation</h3>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-card-title">Preventive Care</div>
+                    <div class="feature-card-text">Continuous health monitoring, 40% medication adherence improvement, 30-50% chronic disease cost reduction, 25% hospital readmission reduction</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Elderly Independence</div>
+                    <div class="feature-card-text">2-5 additional years independent living, reduced caregiver burden, 80% faster emergency response, social isolation reduction</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-title">Projected Savings</div>
+                    <div class="feature-card-text">$1.2T/year global healthcare cost reduction by 2035, 500,000 lives saved/year in emergency response</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3 style="font-size: 1.125rem; margin-bottom: 0.75rem;">The Connection Economy Foundation</h3>
+                <p style="color: var(--text-secondary);">The ATU is infrastructure for the emerging connection economy where every person has access to AGI-level assistance, knowledge work is augmented for all, and value creation flows through contribution-based recognition.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="roadmap" style="background: var(--bg-elev-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">10</span><span class="section-heading">Implementation Roadmap</span></h2>
+
+            <div class="feature-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="feature-card" style="border-color: var(--samsung-blue-bright);">
+                    <div style="font-size: 0.75rem; color: var(--samsung-blue-glow); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.5rem;">PHASE 1</div>
+                    <div class="feature-card-title">Prototype</div>
+                    <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 0.75rem;">30 days</div>
+                    <ul class="content-list" style="font-size: 0.8125rem;">
+                        <li>Hardware prototype assembly</li>
+                        <li>AI model compression</li>
+                        <li>10K device database</li>
+                        <li>Alpha testing (100 units)</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.5rem;">PHASE 2</div>
+                    <div class="feature-card-title">Pilot</div>
+                    <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 0.75rem;">60 days</div>
+                    <ul class="content-list" style="font-size: 0.8125rem;">
+                        <li>Manufacturing setup</li>
+                        <li>Beta testing (1K units)</li>
+                        <li>30K device database</li>
+                        <li>Security certification</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.5rem;">PHASE 3</div>
+                    <div class="feature-card-title">Launch</div>
+                    <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 0.75rem;">90 days</div>
+                    <ul class="content-list" style="font-size: 0.8125rem;">
+                        <li>Mass production</li>
+                        <li>Retail distribution</li>
+                        <li>Marketing campaign</li>
+                        <li>Developer API release</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.5rem;">PHASE 4</div>
+                    <div class="feature-card-title">Scale</div>
+                    <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 0.75rem;">Year 1</div>
+                    <ul class="content-list" style="font-size: 0.8125rem;">
+                        <li>Global distribution</li>
+                        <li>Enterprise product line</li>
+                        <li>Humanitarian program</li>
+                        <li>Continuous AI improvement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h3 class="cta-box-title">Ready to Build the Future</h3>
+                <p class="cta-box-text">The architecture is ready. The hardware is available. The impact is clear.</p>
+                <a href="index.html" class="btn btn-fill" style="margin-right: 0.75rem;">← Back to Overview</a>
+                <a href="docs/ATU_WHITEPAPER.txt" class="btn btn-blue">Download PDF</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="content-inner">
+        <div class="section-block">
+            <h2><span class="section-number">11</span><span class="section-heading">Conclusion</span></h2>
+
+            <p class="section-intro">The AI Tactical Unit represents the convergence of multiple breakthrough technologies into a single, accessible device:</p>
+
+            <ul class="content-list">
+                <li>48³ Source Cube architecture compressed to 800MB edge deployment</li>
+                <li>Recycled Snapdragon processors enabling near-zero manufacturing cost</li>
+                <li>Universal device protocol translation for 50,000+ compatible devices</li>
+                <li>Local-first privacy architecture with zero cloud dependency</li>
+                <li>Self-updating and self-diagnosing operating system</li>
+            </ul>
+
+            <div class="quote-block" style="margin-top: 2rem; border-left-color: var(--accent-cyan);">
+                <p>I designed this device to serve both public and private sectors as it cannot be used for violence and serves to connect humanity with AI in a way that will allow exponential growth and evolution by having access to this level of knowledge on a constant basis at work, in school, or private life.</p>
+                <p style="margin-top: 1rem;">The young will gravitate to this device. It has every modern feature that we have been waiting for the past 25 years in one device. However, those over the age of 40 will need an adjustment period as the technology is only lacking holographic technology. We feel if that is added it may be a bit much and only serve to raise cost. Perhaps this is a technology to be added in a future release of the hardware. That is why the price and parts used are as such—to acclimate those that need time.</p>
+                <cite>— The Architect</cite>
+            </div>
+
+            <p style="color: var(--text-secondary); margin-top: 2rem;">This is the first step toward a world where technology serves humanity as a whole—where connection replaces currency, peace replaces competition, and every person has the tools to live a life of dignity and purpose.</p>
+
+            <p style="color: var(--text-secondary); margin-top: 1rem;"><strong>The architecture is ready. The hardware is available. The impact is clear.</strong></p>
+
+            <p style="color: var(--text-secondary); margin-top: 1rem;">We invite partners, investors, and citizens to join us in building this future.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <p class="footer-copyright">
+            © 2026 Oroboros Labs. All rights reserved.<br>
+            Confidential — For Samsung Partnership Review Only.
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
